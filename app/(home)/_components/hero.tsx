@@ -110,7 +110,7 @@ function Hero() {
             </Button>
             <Button
               size="lg"
-              className="rounded-[32px]font-medium text-[16px]"
+              className="rounded-[32px} font-medium text-[16px]"
               variant="outline"
               asChild
             >
