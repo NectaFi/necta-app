@@ -99,14 +99,18 @@ function Hero() {
             </p>
           </div>
           <div className="flex flex-row gap-3">
-            <Button size="lg" className="gap-4 font-medium text-[16px]" asChild>
+            <Button
+              size="lg"
+              className="rounded-[32px] gap-4 font-medium text-[16px]"
+              asChild
+            >
               <Link href="/app">
                 Start Earning <MoveRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button
               size="lg"
-              className=" font-medium text-[16px]"
+              className="rounded-[32px]font-medium text-[16px]"
               variant="outline"
               asChild
             >
