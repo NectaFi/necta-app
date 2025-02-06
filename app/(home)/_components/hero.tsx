@@ -55,7 +55,7 @@ function Hero() {
               className=" gap-4 text-orange-600"
               asChild
             >
-              <Link href="http://docs.nectafi.xyz">
+              <Link href="http://blog.nectafi.xyz/docs">
                 Learn more about Necta{" "}
                 <MoveRight className="h-4 w-4 text-orange-600" />
               </Link>
