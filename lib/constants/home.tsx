@@ -29,19 +29,19 @@ export const GETTING_STARTED_STEPS = [
     number: 1,
     title: "Connect Wallet & Deploy Your Smart Account",
     description:
-      "Connect your wallet and deploy your safe smart account to get started with automated yield optimization.",
+      "Connect your wallet and deploy a secure Smart Account for automated yield optimization.",
   },
   {
     number: 2,
     title: "Deposit USDC & Activate Agents",
     description:
-      "Deposit USDC and activate Necta's specialized agents to optimize your yields across DeFi protocols.",
+      "Deposit USDC and activate NectaFi’s intelligent agents to start optimizing your yield across DeFi protocols.",
   },
   {
     number: 3,
-    title: "Track Your Profits & Withdraw",
+    title: "Track Profits & Withdraw Anytime",
     description:
-      "Monitor your portfolio performance in real-time and withdraw your profits anytime with full self-custody of your assets.",
+      "Monitor real-time portfolio performance and withdraw your funds anytime with full self-custody.",
   },
 ] as const;
 
@@ -53,7 +53,7 @@ export const FEATURES = [
     icon: <Bot className="h-10 w-10 text-white" />,
     title: "Multi-Agent Intelligence",
     description:
-      "Three specialized agents work together to automatically manage your portfolio, optimizing yields across multiple protocols.",
+      "Three specialized agents work together to optimize yields across multiple protocols automatically.",
     badge: "Smart",
   },
 
@@ -62,7 +62,7 @@ export const FEATURES = [
     icon: <LineChart className="h-10 w-10 text-white" />,
     title: "Automated Rebalancing",
     description:
-      "Our intelligent system continuously monitors and rebalances your portfolio to maximize returns.",
+      "Necta continuously monitors and rebalances your portfolio to maximize returns without manual intervention.",
     badge: "Efficient",
   },
   {
@@ -70,7 +70,7 @@ export const FEATURES = [
     icon: <Shield className="h-10 w-10 text-white" />,
     title: "Fully On-Chain & Self-Custodial",
     description:
-      "Ensures complete security and control, allowing users to maintain full custody of their assets.",
+      " Complete security and control, allowing you to maintain full custody of your assets.",
     badge: "Secure",
   },
   {
@@ -78,7 +78,7 @@ export const FEATURES = [
     icon: <Wallet className="h-10 w-10 text-white" />,
     title: "Seamless UX",
     description:
-      "Designed for both seasoned DeFi enthusiasts and crypto newcomers, Necta makes yield optimization efficient, adaptive, and stress-free.",
+      "Necta makes yield optimization efficient, adaptive, and stress-free for both seasoned DeFi users and newcomers.",
     badge: "Easy",
   },
 ] as const;

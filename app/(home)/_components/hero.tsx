@@ -12,7 +12,7 @@ function Hero() {
   const { theme } = useTheme();
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["yield optimization", "portfolio management", "yield strategies"],
+    () => ["yield optimization", "portfolio rebalancing", "yield strategies"],
     []
   );
 
@@ -94,14 +94,14 @@ function Hero() {
 
             <p className="max-w-2xl text-center text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
               Necta automates and optimizes your stablecoin yield strategies
-              across DeFi protocols. Maximize returns with no manual tracking –
-              fully on-chain and self-custodial.
+              across multiple DeFi protocols. Maximize returns with no manual
+              tracking – fully on-chain and self-custodial.
             </p>
           </div>
           <div className="flex flex-row gap-3">
             <Button size="lg" className="gap-4 font-medium text-[16px]" asChild>
               <Link href="/app">
-                Start earning <MoveRight className="h-4 w-4" />
+                Start Earning <MoveRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button
