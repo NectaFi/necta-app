@@ -101,7 +101,7 @@ function Hero() {
           <div className="flex flex-row gap-3">
             <Button
               size="lg"
-              className="rounded-[32px] gap-4 font-medium text-[16px]"
+              className="gap-4 rounded-[32px] font-medium text-[16px]"
               asChild
             >
               <Link href="/app">
@@ -110,11 +110,11 @@ function Hero() {
             </Button>
             <Button
               size="lg"
-              className="rounded-[32px} font-medium text-[16px]"
+              className="rounded-[32px] font-medium text-[16px]"
               variant="outline"
               asChild
             >
-              <Link href="http://docs.nectafi.xyz">Documentation</Link>
+              <Link href="http://blog.nectafi.xyz/docs">Documentation</Link>
             </Button>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { Bot, Wallet, LineChart, Shield } from "lucide-react";
 // Home page navigation
 export const NAVBAR_MENU = [
   { title: "Blog", href: "http://blog.nectafi.xyz" },
-  { title: "Docs", href: "http://docs.nectafi.xyz" },
+  { title: "Docs", href: "http://blog.nectafi.xyz/docs" },
 ] as const;
 
 // Footer navigation
@@ -11,7 +11,7 @@ export const FOOTER_MENU = {
   Product: [
     { title: "Launch App", href: "/app" },
     { title: "Blog", href: "http://blog.nectafi.xyz" },
-    { title: "Docs", href: "http://docs.nectafi.xyz" },
+    { title: "Docs", href: "http://blog.nectafi.xyz/docs" },
   ],
   Legal: [
     { title: "Privacy Policy", href: "/legal/privacy" },

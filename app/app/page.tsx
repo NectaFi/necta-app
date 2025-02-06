@@ -1,4 +1,4 @@
-import { AppHeader } from "@/components/app-header";
+import { AppHeader } from "@/components/app-header"
 
 export default function AppPage() {
   return (
@@ -14,5 +14,5 @@ export default function AppPage() {
         </div>
       </main>
     </div>
-  );
+  )
 }
