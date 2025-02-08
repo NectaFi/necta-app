@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function CTASection() {
   return (
@@ -15,10 +15,11 @@ export default function CTASection() {
 
             <div className="relative z-10 mx-auto flex max-w-[58rem] flex-col items-center">
               <h2 className="font-heading font-semibold text-4xl text-background sm:text-5xl md:text-5xl">
-                Ready to maximize your DeFi returns?
+                Ready to Maximize Your DeFi Returns?
               </h2>
               <p className="mt-6 max-w-[85%] font-medium text-lg text-muted leading-relaxed sm:text-xl">
-                Unlock automated yields in just a few simple steps
+                Deploy an agent that monitors and reallocates your assets for
+                the highest APYs—24/7, with no custody required.
               </p>
               <div className="mt-8">
                 <Link href="/app">
@@ -33,5 +34,5 @@ export default function CTASection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
