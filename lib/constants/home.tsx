@@ -14,8 +14,8 @@ export const FOOTER_MENU = {
     { title: "Docs", href: "http://blog.nectafi.xyz/docs" },
   ],
   Legal: [
-    { title: "Privacy Policy", href: "/legal/privacy" },
-    { title: "Terms of Service", href: "/legal/terms" },
+    { title: "Privacy Policy", href: "/#" },
+    { title: "Terms of Service", href: "/#" },
   ],
   Socials: [
     { title: "X", href: "https://x.com/NectaFi" },
@@ -29,19 +29,19 @@ export const GETTING_STARTED_STEPS = [
     number: 1,
     title: "Connect Wallet & Deploy Your Smart Account",
     description:
-      "Connect your wallet and deploy a secure Smart Account for automated yield optimization.",
+      "Launch the app, connect your wallet, and deploy a secure Smart Account for automated yield optimization.",
   },
   {
     number: 2,
-    title: "Deposit USDC & Activate Agents",
+    title: "Deposit Assets & Activate Agents",
     description:
-      "Deposit USDC and activate NectaFi’s intelligent agents to start optimizing your yield across DeFi protocols.",
+      "Deposit USDC and activate NectaFi’s intelligent agents to optimize your yield across DeFi protocols.",
   },
   {
     number: 3,
     title: "Track Profits & Withdraw Anytime",
     description:
-      "Monitor real-time portfolio performance and withdraw your funds anytime with full self-custody.",
+      "Monitor real-time performance and withdraw your funds at any time with full self-custody.",
   },
 ] as const;
 
@@ -53,7 +53,7 @@ export const FEATURES = [
     icon: <Bot className="h-10 w-10 text-white" />,
     title: "Multi-Agent Intelligence",
     description:
-      "Three specialized agents work together to optimize yields across multiple protocols automatically.",
+      "Three specialized AI agents collaborate to automatically optimize yields across multiple protocols, securing the highest APYs effortlessly.",
     badge: "Smart",
   },
 
@@ -62,7 +62,7 @@ export const FEATURES = [
     icon: <LineChart className="h-10 w-10 text-white" />,
     title: "Automated Rebalancing",
     description:
-      "Necta continuously monitors and rebalances your portfolio to maximize returns without manual intervention.",
+      "Necta's AI agents continuously monitor and rebalance your portfolio in real timeto maximize returns—no manual effort needed.",
     badge: "Efficient",
   },
   {
@@ -76,9 +76,9 @@ export const FEATURES = [
   {
     id: "seamless-integration",
     icon: <Wallet className="h-10 w-10 text-white" />,
-    title: "Seamless UX",
+    title: "Effortless Yield Optimization",
     description:
-      "Necta makes yield optimization efficient, adaptive, and stress-free for both seasoned DeFi users and newcomers.",
+      "Necta makes earning yield easy, adaptive, and stress-free for both seasoned DeFi users and newcomers.",
     badge: "Easy",
   },
 ] as const;
