@@ -19,7 +19,7 @@ export const FOOTER_MENU = {
     { title: "Terms of Service", href: "/#" },
   ],
   Socials: [
-    { title: "X", href: "https://x.com/NectaFi" },
+    { title: "X", href: "https://x.com/NectaFi_AI" },
     { title: "Github", href: "https://github.com/NectaFi" },
   ],
 } as const;
