@@ -11,13 +11,13 @@ export default function CTASection() {
         <div className="relative z-10 mx-auto max-w-[1250px]">
           <div className="relative overflow-hidden rounded-[24px] bg-black px-4 py-32 text-center">
             {/* Background Gradient Effect */}
-            <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-primary/5 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-primary15 to-transparent" />
 
             <div className="relative z-10 mx-auto flex max-w-[58rem] flex-col items-center">
               <h2 className="font-heading font-semibold text-4xl text-background sm:text-5xl md:text-5xl">
                 Ready to Maximize Your DeFi Returns?
               </h2>
-              <p className="mt-6 max-w-[85%] font-medium text-lg text-muted leading-relaxed sm:text-xl">
+              <p className="mt-6 max-w-[85%] text-lg text-muted leading-relaxed sm:text-xl">
                 Deploy an agent that monitors and reallocates your assets for
                 the highest APYs—24/7, with no custody required.
               </p>

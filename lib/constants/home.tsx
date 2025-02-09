@@ -2,6 +2,7 @@ import { Bot, Wallet, LineChart, Shield } from "lucide-react";
 
 // Home page navigation
 export const NAVBAR_MENU = [
+  { title: "Home", href: "/" },
   { title: "Blog", href: "http://blog.nectafi.xyz" },
   { title: "Docs", href: "http://blog.nectafi.xyz/docs" },
 ] as const;
@@ -80,5 +81,38 @@ export const FEATURES = [
     description:
       "Necta makes earning yield easy, adaptive, and stress-free for both seasoned DeFi users and newcomers.",
     badge: "Easy",
+  },
+] as const;
+
+export const faqs = [
+  {
+    id: "what-is-necta",
+    question: "What is NectaFi?",
+    answer:
+      "Necta Finance is an AI-powered DeFi yield optimization platform that uses intelligent agents to automatically manage and maximize your crypto portfolio returns. ",
+  },
+  {
+    id: "why-necta",
+    question: "Why Necta and what are the benefits of using it?",
+    answer:
+      "Necta offers automated yield optimization, gas-efficient operations, and intelligent portfolio management. Benefits include maximized returns across multiple protocols, reduced time and effort in DeFi farming, and professional-grade portfolio management powered by AI.",
+  },
+  {
+    id: "how-to-use",
+    question: "How do I use Necta?",
+    answer:
+      "Getting started with Necta is simple: 1) Connect your wallet, 2) Deposit your assets, 3) Choose your risk preference, and 4) Let our AI agents optimize your yields. You can monitor your portfolio and withdraw at any time.",
+  },
+  {
+    id: "risks",
+    question: "What are the risks of using the protocol?",
+    answer:
+      "While we implement robust security measures and risk management protocols, DeFi investments carry inherent risks including smart contract risks, market volatility, and protocol-specific risks. We recommend users to understand these risks and invest accordingly.",
+  },
+  {
+    id: "token",
+    question: "Does Necta have a token?",
+    answer:
+      "Currently, Necta does not have a token. Our focus is on building a reliable and efficient yield optimization protocol. Any future token launches will be announced through our official channels.",
   },
 ] as const;

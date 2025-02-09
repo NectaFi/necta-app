@@ -1,11 +1,11 @@
-"use client"
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { FEATURES } from "@/lib/constants/home"
+"use client";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { FEATURES } from "@/lib/constants/home";
 
 export function FeaturesSection() {
   return (
-    <section className="relative bg-black py-24 sm:py-32">
+    <section className="relative bg-[#101010] py-24 sm:py-32">
       <div className="container mx-auto max-w-[1150px] px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="mb-4 font-bold text-4xl text-white tracking-tight sm:text-5xl">
@@ -29,12 +29,12 @@ export function FeaturesSection() {
             {FEATURES.map((FEATURE) => (
               <Card
                 key={FEATURE.id}
-                className="group relative overflow-hidden border-orange-600/50 bg-black/50 p-6 transition-colors hover:border-white/10"
+                className="group relative overflow-hidden border-[#F29600]/50 bg-black/50 p-6 transition-colors hover:border-white/10"
               >
                 <div className="mb-4 text-white">{FEATURE.icon}</div>
                 <Badge
                   variant="outline"
-                  className="mb-3 border-orange-600/30 text-orange-600"
+                  className="mb-3 border-[#F29600]/30 text-[#F29600]"
                 >
                   {FEATURE.badge}
                 </Badge>
@@ -44,12 +44,12 @@ export function FeaturesSection() {
                 <p className="text-base text-gray-400">{FEATURE.description}</p>
 
                 {/* Hover Effect */}
-                <div className="-z-10 absolute inset-0 bg-gradient-to-br from-orange-600/10 via-orange-600/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="-z-10 absolute inset-0 bg-gradient-to-br from-[#F29600]/10 via-[#F29600]/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               </Card>
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

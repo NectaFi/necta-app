@@ -1,9 +1,9 @@
-import Link from "next/link"
-import { Logo } from "@/components/ui/logo"
-import { FOOTER_MENU } from "@/lib/constants/home"
+import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
+import { FOOTER_MENU } from "@/lib/constants/home";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   return (
     <div className="container mx-auto max-w-[1250px] px-4 pt-12 md:pt-16 lg:pt-32">
@@ -30,7 +30,7 @@ export function Footer() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="font-medium text-[16px] text-muted-foreground transition-colors hover:text-orange-600"
+                        className="font-medium text-[16px] text-[#23191A]/80 transition-colors hover:text-[#F29600]"
                       >
                         {item.title}
                       </Link>
@@ -47,5 +47,5 @@ export function Footer() {
         Necta Finance
       </span>
     </div>
-  )
+  );
 }

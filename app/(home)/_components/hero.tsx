@@ -32,7 +32,7 @@ function Hero() {
       <div className="absolute inset-0">
         <Waves
           lineColor={
-            theme === "dark" ? "rgb(234 88 12 / 0.3)" : "rgb(234 88 12 / 0.2)"
+            theme === "dark" ? "rgb(242 150 0 / 0.3)" : "rgb(242 150 0 / 0.2)"
           }
           backgroundColor="transparent"
           waveSpeedX={0.02}
@@ -49,7 +49,7 @@ function Hero() {
       <div className="container relative mx-auto">
         <div className="flex flex-col items-center justify-center gap-8 py-16 lg:py-32">
           <div>
-            <Button
+            {/* <Button
               variant="secondary"
               size="sm"
               className=" gap-4 text-orange-600"
@@ -59,10 +59,10 @@ function Hero() {
                 Learn more about Necta{" "}
                 <MoveRight className="h-4 w-4 text-orange-600" />
               </Link>
-            </Button>
+            </Button> */}
           </div>
           <div className="flex flex-col gap-4">
-            <h1 className="max-w-2xl text-center font-regular text-5xl tracking-tighter md:text-7xl">
+            <h1 className="max-w-2xl text-[#23191A] text-center font-regular text-5xl tracking-tighter md:text-7xl">
               <span className="text-spektr-cyan-50">
                 The agentic platform for automated DeFi
               </span>
@@ -71,7 +71,7 @@ function Hero() {
                 {titles.map((title, index) => (
                   <motion.span
                     key={title}
-                    className="absolute font-semibold text-orange-600"
+                    className="absolute font-semibold text-[#F29600]"
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
@@ -92,29 +92,29 @@ function Hero() {
               </span>
             </h1>
 
-            <p className="max-w-2xl text-center text-lg text-muted-foreground leading-relaxed tracking-tight md:text-xl">
+            <p className="max-w-2xl font-medium text-[#23191A]/80 text-center text-lg leading-relaxed tracking-tight md:text-xl">
               Necta automates and optimizes your stablecoin yield strategies
-              across multiple DeFi protocols. Maximize returns with no manual
-              tracking – fully on-chain and self-custodial.
+              across multiple DeFi protocols. Maximize returns 24/7 with no
+              manual tracking – fully on-chain and self-custodial.
             </p>
           </div>
           <div className="flex flex-row gap-3">
             <Button
               size="lg"
-              className="gap-4 rounded-[32px] font-medium text-[16px]"
+              className="gap-4 rounded-[24px] bg-[#F29600] px-4 font-medium text-[16px] text-white hover:bg-[#F29600]/80"
               asChild
             >
               <Link href="/app">
-                Start Earning <MoveRight className="h-4 w-4" />
+                START EARNING <MoveRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button
               size="lg"
-              className="rounded-[32px] font-medium text-[16px]"
+              className="rounded-[24px] font-medium text-[16px] border-[#F29600] text-[#F29600] hover:bg-[#F29600] hover:text-white"
               variant="outline"
               asChild
             >
-              <Link href="http://blog.nectafi.xyz/docs">Documentation</Link>
+              <Link href="http://blog.nectafi.xyz/docs">LEARN MORE</Link>
             </Button>
           </div>
         </div>
