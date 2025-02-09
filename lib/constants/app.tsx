@@ -12,11 +12,11 @@ export const APP_MENU = [
 export const APP_LINKS = [
   {
     name: "Blog",
-    href: "/blog",
+    href: "http://blog.nectafi.xyz",
   },
   {
     name: "Docs",
-    href: "/docs",
+    href: "http://blog.nectafi.xyz/docs",
   },
 ] as const
 

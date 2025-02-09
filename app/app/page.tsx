@@ -16,9 +16,11 @@ export default function AppPage() {
         </div>
 
         <div className="relative w-full">
-          <div className="absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r from-[#111111] to-transparent" />
-          <ProtocolScroll />
-          <div className="absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l from-[#111111] to-transparent" />
+          <div className="absolute top-0 left-0 z-10 h-full w-24 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent" />
+          <div className="w-full">
+            <ProtocolScroll />
+          </div>
+          <div className="absolute top-0 right-0 z-10 h-full w-24 bg-gradient-to-l from-[#111111] via-[#111111]/80 to-transparent" />
         </div>
       </div>
     </main>

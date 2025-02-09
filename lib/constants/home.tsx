@@ -15,8 +15,8 @@ export const FOOTER_MENU = {
     { title: "Docs", href: "http://blog.nectafi.xyz/docs" },
   ],
   Legal: [
-    { title: "Privacy Policy", href: "/#" },
-    { title: "Terms of Service", href: "/#" },
+    { title: "Privacy Policy", href: "/legal/privacy" },
+    { title: "Terms of Service", href: "/legal/terms" },
   ],
   Socials: [
     { title: "X", href: "https://x.com/NectaFi_AI" },
@@ -36,7 +36,7 @@ export const GETTING_STARTED_STEPS = [
     number: 2,
     title: "Deposit Assets & Activate Agents",
     description:
-      "Deposit USDC and activate NectaFi’s intelligent agents to optimize your yield across DeFi protocols.",
+      "Deposit USDC and activate NectaFi's intelligent agents to optimize your yield across DeFi protocols.",
   },
   {
     number: 3,

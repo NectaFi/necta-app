@@ -3,16 +3,18 @@
 import { useEffect, useRef, useState } from "react"
 import { PROTOCOLS } from "@/lib/constants/app"
 import { ProtocolCard } from "./protocol-card"
+import { useIsClient } from "@/hooks/use-is-client"
 
 export function ProtocolScroll() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [isPaused, setIsPaused] = useState(false)
   const [activeProtocol, setActiveProtocol] = useState<string | null>(null)
+  const isClient = useIsClient()
   const scrollSpeed = 1 // Pixels per frame at 60fps
 
   useEffect(() => {
     const scrollContainer = scrollRef.current
-    if (!scrollContainer) return
+    if (!scrollContainer || !isClient) return
 
     let lastTime = performance.now()
     let animationFrameId: number
@@ -48,15 +50,19 @@ export function ProtocolScroll() {
         cancelAnimationFrame(animationFrameId)
       }
     }
-  }, [isPaused, scrollSpeed])
+  }, [isPaused, scrollSpeed, isClient])
 
   // Create a triple array for smooth infinite scroll
   const tripleProtocols = [...PROTOCOLS, ...PROTOCOLS, ...PROTOCOLS]
 
+  if (!isClient) {
+    return null // Or a loading state / static version
+  }
+
   return (
     <div
       ref={scrollRef}
-      className="hide_scrollbar flex w-full gap-4 overflow-x-auto py-4 transition-all duration-300"
+      className="hide_scrollbar flex gap-4 overflow-x-auto py-4"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => {
         setIsPaused(false)

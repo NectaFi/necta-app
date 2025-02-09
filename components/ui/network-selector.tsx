@@ -23,9 +23,9 @@ export function NetworkSelector() {
         <Button
           variant="ghost"
           size="sm"
-          className="flex items-center gap-2 rounded-full bg-black/20 px-3 text-sm text-white hover:bg-black/30"
+          className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-black/10 px-3 text-[15px] text-white/90 shadow-[0_2px_4px_0_rgba(0,0,0,0.15)] backdrop-blur-sm transition-colors hover:bg-black/20"
         >
-          <div className="relative h-4 w-4">
+          <div className="relative h-5 w-5">
             <Image
               src={selectedNetwork.icon}
               alt={`${selectedNetwork.name} icon`}
@@ -39,15 +39,15 @@ export function NetworkSelector() {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="w-[120px] rounded-lg border-0 bg-black/50 p-1 text-white backdrop-blur-xl"
+        className="w-[140px] rounded-lg border border-white/[0.08] bg-black/10 p-1.5 text-white shadow-[0_2px_4px_0_rgba(0,0,0,0.15)] backdrop-blur-sm"
       >
         {NETWORKS.map((network) => (
           <DropdownMenuItem
             key={network.name}
-            className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-white/10"
+            className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[15px] text-white/90 transition-colors hover:bg-black/20"
             onClick={() => setSelectedNetwork(network)}
           >
-            <div className="relative h-4 w-4">
+            <div className="relative h-5 w-5">
               <Image
                 src={network.icon}
                 alt={`${network.name} icon`}
