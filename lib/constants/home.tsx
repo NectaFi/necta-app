@@ -1,11 +1,11 @@
-import { Bot, Wallet, LineChart, Shield } from "lucide-react";
+import { Bot, Wallet, LineChart, Shield } from "lucide-react"
 
 // Home page navigation
 export const NAVBAR_MENU = [
   { title: "Home", href: "/" },
   { title: "Blog", href: "http://blog.nectafi.xyz" },
   { title: "Docs", href: "http://blog.nectafi.xyz/docs" },
-] as const;
+] as const
 
 // Footer navigation
 export const FOOTER_MENU = {
@@ -22,7 +22,7 @@ export const FOOTER_MENU = {
     { title: "X", href: "https://x.com/NectaFi_AI" },
     { title: "Github", href: "https://github.com/NectaFi" },
   ],
-} as const;
+} as const
 
 // Getting Started Steps
 export const GETTING_STARTED_STEPS = [
@@ -44,7 +44,7 @@ export const GETTING_STARTED_STEPS = [
     description:
       "Monitor real-time performance and withdraw your funds at any time with full self-custody.",
   },
-] as const;
+] as const
 
 // Feature Section
 
@@ -82,7 +82,7 @@ export const FEATURES = [
       "Necta makes earning yield easy, adaptive, and stress-free for both seasoned DeFi users and newcomers.",
     badge: "Easy",
   },
-] as const;
+] as const
 
 export const faqs = [
   {
@@ -115,4 +115,4 @@ export const faqs = [
     answer:
       "Currently, Necta does not have a token. Our focus is on building a reliable and efficient yield optimization protocol. Any future token launches will be announced through our official channels.",
   },
-] as const;
+] as const

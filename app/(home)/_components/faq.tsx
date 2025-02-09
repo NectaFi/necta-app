@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/components/ui/accordion"
 
-import { faqs } from "@/lib/constants/home";
+import { faqs } from "@/lib/constants/home"
 
 export function FAQ() {
   return (
@@ -28,20 +28,20 @@ export function FAQ() {
               <AccordionItem
                 key={faq.id}
                 value={faq.id}
-                className="border-t border-[#23191A]/20"
+                className="border-[#23191A]/20 border-t"
               >
                 <AccordionTrigger className="group py-6">
                   <div className="flex w-full items-center justify-between">
-                    <span className="text-left font-medium text-xl text-[#23191A]">
+                    <span className="text-left font-medium text-[#23191A] text-xl">
                       {faq.question}
                     </span>
-                    <span className="ml-4 text-xl text-[#23191A]/60 transition-transform duration-200 group-data-[state=open]:rotate-45">
+                    <span className="ml-4 text-[#23191A]/60 text-xl transition-transform duration-200 group-data-[state=open]:rotate-45">
                       +
                     </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="pb-6">
-                  <p className="text-base text-[#23191A]/70">{faq.answer}</p>
+                  <p className="text-[#23191A]/70 text-base">{faq.answer}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -49,5 +49,5 @@ export function FAQ() {
         </div>
       </div>
     </section>
-  );
+  )
 }

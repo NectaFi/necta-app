@@ -11,7 +11,7 @@ export function Logo({ variant = "default", className }: LogoProps) {
   return (
     <Link href="/" className={cn("block", className)}>
       <Image
-        src={variant === "dark" ? "/logo-dark.svg" : "/logo.svg"}
+        src={variant === "dark" ? "/logo/logo-dark.svg" : "/logo/logo.svg"}
         alt="Necta Finance Logo"
         width={120}
         height={32}

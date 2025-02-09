@@ -1,10 +1,10 @@
-import { GETTING_STARTED_STEPS } from "@/lib/constants/home";
+import { GETTING_STARTED_STEPS } from "@/lib/constants/home"
 
 type Step = {
-  number: number;
-  title: string;
-  description: string;
-};
+  number: number
+  title: string
+  description: string
+}
 
 export function GettingStarted() {
   return (
@@ -27,7 +27,7 @@ export function GettingStarted() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function StepCard({ number, title, description }: Step) {
@@ -37,7 +37,7 @@ function StepCard({ number, title, description }: Step) {
         <span className="font-semibold text-lg text-white">{number}</span>
       </div>
       <h3 className="font-bold text-foreground text-xl">{title}</h3>
-      <p className="text-base text-[#23191A]/70">{description}</p>
+      <p className="text-[#23191A]/70 text-base">{description}</p>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-"use client";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { FEATURES } from "@/lib/constants/home";
+"use client"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { FEATURES } from "@/lib/constants/home"
 
 export function FeaturesSection() {
   return (
@@ -51,5 +51,5 @@ export function FeaturesSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

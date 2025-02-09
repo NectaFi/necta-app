@@ -1,31 +1,31 @@
-"use client";
+"use client"
 
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-import { Waves } from "@/components/ui/waves-background";
-import Link from "next/link";
+import { useEffect, useMemo, useState } from "react"
+import { motion } from "framer-motion"
+import { MoveRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useTheme } from "next-themes"
+import { Waves } from "@/components/ui/waves-background"
+import Link from "next/link"
 
 function Hero() {
-  const { theme } = useTheme();
-  const [titleNumber, setTitleNumber] = useState(0);
+  const { theme } = useTheme()
+  const [titleNumber, setTitleNumber] = useState(0)
   const titles = useMemo(
     () => ["yield optimization", "portfolio rebalancing", "yield strategies"],
-    []
-  );
+    [],
+  )
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (titleNumber === titles.length - 1) {
-        setTitleNumber(0);
+        setTitleNumber(0)
       } else {
-        setTitleNumber(titleNumber + 1);
+        setTitleNumber(titleNumber + 1)
       }
-    }, 2000);
-    return () => clearTimeout(timeoutId);
-  }, [titleNumber, titles]);
+    }, 2000)
+    return () => clearTimeout(timeoutId)
+  }, [titleNumber, titles])
 
   return (
     <div className="relative w-full">
@@ -62,7 +62,7 @@ function Hero() {
             </Button> */}
           </div>
           <div className="flex flex-col gap-4">
-            <h1 className="max-w-2xl text-[#23191A] text-center font-regular text-5xl tracking-tighter md:text-7xl">
+            <h1 className="max-w-2xl text-center font-regular text-5xl text-[#23191A] tracking-tighter md:text-7xl">
               <span className="text-spektr-cyan-50">
                 The agentic platform for automated DeFi
               </span>
@@ -92,7 +92,7 @@ function Hero() {
               </span>
             </h1>
 
-            <p className="max-w-2xl font-medium text-[#23191A]/80 text-center text-lg leading-relaxed tracking-tight md:text-xl">
+            <p className="max-w-2xl text-center font-medium text-[#23191A]/80 text-lg leading-relaxed tracking-tight md:text-xl">
               Necta automates and optimizes your stablecoin yield strategies
               across multiple DeFi protocols. Maximize returns 24/7 with no
               manual tracking – fully on-chain and self-custodial.
@@ -110,7 +110,7 @@ function Hero() {
             </Button>
             <Button
               size="lg"
-              className="rounded-[24px] font-medium text-[16px] border-[#F29600] text-[#F29600] hover:bg-[#F29600] hover:text-white"
+              className="rounded-[24px] border-[#F29600] font-medium text-[#F29600] text-[16px] hover:bg-[#F29600] hover:text-white"
               variant="outline"
               asChild
             >
@@ -120,7 +120,7 @@ function Hero() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export { Hero };
+export { Hero }

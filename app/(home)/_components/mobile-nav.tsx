@@ -23,7 +23,7 @@ export function MobileNav({ onOpenChange }: MobileNavProps) {
             <li key={route.href}>
               <Link
                 href={route.href}
-                className="block rounded-[32px] px-3 py-2 font-medium text-[16px] text-brand-muted hover:text-orange-600"
+                className="block rounded-[24px] px-3 py-2 font-medium text-[#23191A]/80 text-[16px] hover:text-[#F29600]"
                 onClick={() => onOpenChange(false)}
               >
                 {route.title}
@@ -38,7 +38,7 @@ export function MobileNav({ onOpenChange }: MobileNavProps) {
               variant: "default",
               size: "default",
               className:
-                "mt-4 flex h-12 w-full items-center justify-center rounded-[32px] font-medium text-[15px]",
+                "mt-4 flex h-12 w-full items-center justify-center rounded-[24px] bg-[#F29600] font-medium text-[15px]",
             }),
           )}
           onClick={() => onOpenChange(false)}

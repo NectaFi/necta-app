@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export default function CTASection() {
   return (
@@ -34,5 +34,5 @@ export default function CTASection() {
         </div>
       </div>
     </section>
-  );
+  )
 }
