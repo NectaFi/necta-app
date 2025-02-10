@@ -33,18 +33,34 @@ export function SystemEvents({ className }: SystemEventsProps) {
 
   const fetchEvents = async () => {
     try {
+      console.log("Fetching events...");
       const response = await fetch(
-        "https://necta-agents-production.up.railway.app/thoughts"
+        "https://necta-agents-production.up.railway.app/thoughts",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Add origin header
+            Origin: window.location.origin,
+          },
+          // Add credentials if needed
+          credentials: "include",
+        }
       );
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
       const data = await response.json();
+      console.log("Received data:", data);
 
       // Handle different response formats
       const formattedEvents = Array.isArray(data)
         ? data
         : data.thoughts || data.events || [];
+
+      console.log("Formatted events:", formattedEvents);
 
       // Validate each event has required fields
       const validEvents = formattedEvents.filter((event: any) => {
@@ -57,11 +73,17 @@ export function SystemEvents({ className }: SystemEventsProps) {
         );
       });
 
+      console.log("Valid events:", validEvents);
       setEvents(validEvents);
       setError(null);
     } catch (error) {
       console.error("Failed to fetch events:", error);
-      setError("Unable to connect to agents. Please check your connection.");
+      // More detailed error message
+      setError(
+        `Unable to connect to agents. Error: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }. Please check your connection and browser console for details.`
+      );
     }
   };
 
