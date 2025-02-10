@@ -1,28 +1,34 @@
-"use client";
-
-import { useState } from "react";
+"use client"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { NETWORKS } from "@/lib/constants/app";
-import { ChevronDown } from "lucide-react";
-import Image from "next/image";
-import { useSwitchChain, useChainId } from "wagmi";
-import { base, arbitrum } from "viem/chains";
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
+import { NETWORKS } from "@/lib/constants/app"
+import { ChevronDown } from "lucide-react"
+import Image from "next/image"
+import { useSwitchChain, useChainId } from "wagmi"
+import { base, arbitrum, type Chain } from "viem/chains"
 
-const chainData = {
-  [base.id]: { ...NETWORKS[0], chain: base },
-  [arbitrum.id]: { ...NETWORKS[1], chain: arbitrum },
-};
+interface NetworkData {
+  name: string
+  icon: string
+  chain: Chain
+}
+
+const chainData = new Map<number, NetworkData>([
+  [base.id, { ...NETWORKS[0], chain: base }],
+  [arbitrum.id, { ...NETWORKS[1], chain: arbitrum }],
+])
+
+const defaultNetwork: NetworkData = { ...NETWORKS[0], chain: base }
 
 export function NetworkSelector() {
-  const chainId = useChainId();
-  const { switchChain } = useSwitchChain();
-  const selectedNetwork = chainData[chainId] || chainData[base.id];
+  const chainId = useChainId()
+  const { switchChain } = useSwitchChain()
+  const selectedNetwork = chainData.get(chainId) || defaultNetwork
 
   return (
     <DropdownMenu>
@@ -48,7 +54,7 @@ export function NetworkSelector() {
         align="end"
         className="w-[140px] rounded-lg border border-white/[0.08] bg-black/10 p-1.5 text-white shadow-[0_2px_4px_0_rgba(0,0,0,0.15)] backdrop-blur-sm"
       >
-        {Object.values(chainData).map(({ name, icon, chain }) => (
+        {Array.from(chainData.entries()).map(([_id, { name, icon, chain }]) => (
           <DropdownMenuItem
             key={chain.id}
             className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[15px] text-white/90 transition-colors hover:bg-black/20"
@@ -67,5 +73,5 @@ export function NetworkSelector() {
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

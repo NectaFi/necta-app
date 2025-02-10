@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { WagmiProvider, createConfig, http } from "wagmi";
-import { ConnectKitProvider, getDefaultConfig } from "connectkit";
-import { base, arbitrum } from "viem/chains";
-import { env } from "@/env";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WagmiProvider, createConfig } from "wagmi"
+import { ConnectKitProvider, getDefaultConfig } from "connectkit"
+import { base, arbitrum } from "viem/chains"
+import { env } from "@/env"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 const config = createConfig(
   getDefaultConfig({
@@ -20,8 +20,8 @@ const config = createConfig(
     appDescription: "AI-Powered Yield Optimization",
     appUrl: "https://nectafi.xyz",
     appIcon: "https://nectafi.xyz/logo.png",
-  })
-);
+  }),
+)
 
 export function WalletProvider({ children }: { children: React.ReactNode }) {
   return (
@@ -38,5 +38,5 @@ export function WalletProvider({ children }: { children: React.ReactNode }) {
         </ConnectKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
-  );
+  )
 }
