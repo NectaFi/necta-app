@@ -1,21 +1,28 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { NETWORKS } from "@/lib/constants/app"
-import { ChevronDown } from "lucide-react"
-import Image from "next/image"
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { NETWORKS } from "@/lib/constants/app";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useSwitchChain, useChainId } from "wagmi";
+import { base, arbitrum } from "viem/chains";
 
-type Network = (typeof NETWORKS)[number]
+const chainData = {
+  [base.id]: { ...NETWORKS[0], chain: base },
+  [arbitrum.id]: { ...NETWORKS[1], chain: arbitrum },
+};
 
 export function NetworkSelector() {
-  const [selectedNetwork, setSelectedNetwork] = useState<Network>(NETWORKS[0])
+  const chainId = useChainId();
+  const { switchChain } = useSwitchChain();
+  const selectedNetwork = chainData[chainId] || chainData[base.id];
 
   return (
     <DropdownMenu>
@@ -41,24 +48,24 @@ export function NetworkSelector() {
         align="end"
         className="w-[140px] rounded-lg border border-white/[0.08] bg-black/10 p-1.5 text-white shadow-[0_2px_4px_0_rgba(0,0,0,0.15)] backdrop-blur-sm"
       >
-        {NETWORKS.map((network) => (
+        {Object.values(chainData).map(({ name, icon, chain }) => (
           <DropdownMenuItem
-            key={network.name}
+            key={chain.id}
             className="flex items-center gap-2 rounded-md px-2 py-1.5 text-[15px] text-white/90 transition-colors hover:bg-black/20"
-            onClick={() => setSelectedNetwork(network)}
+            onClick={() => switchChain({ chainId: chain.id })}
           >
             <div className="relative h-5 w-5">
               <Image
-                src={network.icon}
-                alt={`${network.name} icon`}
+                src={icon}
+                alt={`${name} icon`}
                 fill
                 className="rounded-full object-contain"
               />
             </div>
-            {network.name}
+            {name}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
