@@ -5,6 +5,7 @@ import { ConnectKitProvider, getDefaultConfig } from "connectkit"
 import { base, arbitrum } from "viem/chains"
 import { env } from "@/env"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { http } from "viem"
 
 const queryClient = new QueryClient()
 
@@ -14,12 +15,17 @@ const config = createConfig(
     appName: "NectaFi",
     // Supported chains
     chains: [base, arbitrum],
-    // Infura or Alchemy key (optional)
+    // Chain configuration
+    transports: {
+      [base.id]: http(),
+      [arbitrum.id]: http(),
+    },
+    // WalletConnect Project ID
     walletConnectProjectId: env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
     // Optional
     appDescription: "AI-Powered Yield Optimization",
-    appUrl: "https://nectafi.xyz",
-    appIcon: "https://nectafi.xyz/logo.png",
+    appUrl: env.NEXT_PUBLIC_APP_URL,
+    appIcon: `${env.NEXT_PUBLIC_APP_URL}/logo.png`,
   }),
 )
 
