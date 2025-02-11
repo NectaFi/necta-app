@@ -17,8 +17,12 @@ const config = createConfig(
     chains: [base, arbitrum],
     // Chain configuration
     transports: {
-      [base.id]: http(),
-      [arbitrum.id]: http(),
+      [base.id]: http(
+        `https://base-mainnet.g.alchemy.com/v2/${env.NEXT_PUBLIC_ALCHEMY_ID}`,
+      ),
+      [arbitrum.id]: http(
+        `https://arb-mainnet.g.alchemy.com/v2/${env.NEXT_PUBLIC_ALCHEMY_ID}`,
+      ),
     },
     // WalletConnect Project ID
     walletConnectProjectId: env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
