@@ -1,7 +1,11 @@
 import { ChartPie, LayoutGrid, Github, Twitter } from "lucide-react"
 
 export const APP_MENU = [
-  { title: "Home", href: "/app", icon: <LayoutGrid className="h-5 w-5" /> },
+  {
+    title: "Dashboard",
+    href: "/app/dashboard",
+    icon: <LayoutGrid className="h-5 w-5" />,
+  },
   {
     title: "Portfolio",
     href: "/app/portfolio",

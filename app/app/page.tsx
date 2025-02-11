@@ -3,7 +3,7 @@
 import { useAccount } from "wagmi"
 import { useRouter } from "next/navigation"
 import { ProtocolScroll } from "@/components/ui/protocol-scroll"
-import { Connect } from "@/components/connect"
+import { Connect } from "@/components/app/connect"
 import { Button } from "@/components/ui/button"
 import { Rocket } from "lucide-react"
 

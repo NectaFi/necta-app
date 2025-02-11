@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic"
 
-import { AppHeader } from "@/components/app-header"
-import { AppFooter } from "@/components/app-footer"
+import { AppHeader } from "@/components/app/app-header"
+import { AppFooter } from "@/components/app/app-footer"
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {

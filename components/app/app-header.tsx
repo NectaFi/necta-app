@@ -8,8 +8,8 @@ import { Logo } from "@/components/ui/logo"
 import { Button } from "@/components/ui/button"
 import { useWindow } from "@/hooks/use-window"
 import { APP_MENU } from "@/lib/constants/app"
-import { Connect } from "@/components/connect"
-import { NetworkSelector } from "@/components/network-selector"
+import { Connect } from "@/components/app/connect"
+import { NetworkSelector } from "@/components/app/network-selector"
 import { useEffect } from "react"
 
 export function AppHeader() {
