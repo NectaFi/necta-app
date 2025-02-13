@@ -2,11 +2,10 @@
 
 import { useAccount } from "wagmi";
 import { useWalletStore } from "@/lib/store/slices/wallet";
-import { useDepositStore } from "@/lib/store/slices/deposit";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Deposit } from "@/components/app/setup/deposit";
 
 export default function SetupPage() {
   const { address, isConnected } = useAccount();
@@ -14,13 +13,6 @@ export default function SetupPage() {
 
   const { brahmaAccount, deploymentStatus, deployBrahmaAccount } =
     useWalletStore();
-
-  const {
-    amount,
-    status: depositStatus,
-    setAmount,
-    handleDeposit,
-  } = useDepositStore();
 
   // Redirect if not connected
   useEffect(() => {
@@ -35,10 +27,9 @@ export default function SetupPage() {
     await deployBrahmaAccount(address);
   };
 
-  // Handle deposit and agent activation
-  const handleDepositAndActivate = async () => {
-    if (!brahmaAccount) return;
-    await handleDeposit(brahmaAccount);
+  // Handle successful deposit
+  const handleDepositSuccess = () => {
+    router.push("/app/dashboard");
   };
 
   if (!isConnected) return null;
@@ -73,33 +64,10 @@ export default function SetupPage() {
             <h2 className="text-xl font-semibold mb-4">
               Step 2: Initial Deposit
             </h2>
-            <div className="space-y-4">
-              <Input
-                type="number"
-                placeholder="Amount (USDC)"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                min="10"
-                disabled={depositStatus !== "idle"}
-              />
-              <p className="text-sm text-muted-foreground">
-                Minimum deposit: 10 USDC
-              </p>
-              <Button
-                onClick={handleDepositAndActivate}
-                disabled={
-                  !amount || parseFloat(amount) < 10 || depositStatus !== "idle"
-                }
-              >
-                {depositStatus === "approving"
-                  ? "Approving..."
-                  : depositStatus === "depositing"
-                  ? "Depositing..."
-                  : depositStatus === "completed"
-                  ? "Completed"
-                  : "Deposit & Activate Agents"}
-              </Button>
-            </div>
+            <Deposit
+              brahmaAccount={brahmaAccount}
+              onSuccess={handleDepositSuccess}
+            />
           </div>
         )}
       </div>
