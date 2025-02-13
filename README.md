@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
-   Necta automates and optimizes your stablecoin yield strategies across DeFi protocols. Maximize returns with no manual tracking – fully on-chain and self-custodial.
+   Necta automates and optimizes your stablecoin yield strategies across multiple DeFi protocols. Maximize returns with no manual tracking – fully on-chain and self-custodial.
 </p>
 
  <!-- <p align="center">
