@@ -1,18 +1,18 @@
-import { create } from "zustand"
-import { createAgentSlice, type AgentSlice } from "./slices/agent"
-import { createWalletSlice, type WalletSlice } from "./slices/wallet"
+import { create } from "zustand";
+import { createWalletSlice, type WalletSlice } from "./slices/wallet";
+import { createDepositSlice, type DepositSlice } from "./slices/deposit";
 
-interface AppState extends AgentSlice, WalletSlice {
-  isLoading: boolean
-  error: string | null
+interface Store extends WalletSlice, DepositSlice {
+  isLoading: boolean;
+  error: string | null;
 }
 
-export const useAppStore = create<AppState>()((...args) => ({
-  // UI State
+export const useStore = create<Store>()((...args) => ({
+  // Initial state
   isLoading: false,
   error: null,
 
-  // Slices
-  ...createAgentSlice(...args),
+  // Combine slices
   ...createWalletSlice(...args),
-}))
+  ...createDepositSlice(...args),
+}));
