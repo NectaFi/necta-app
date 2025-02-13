@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { createWalletSlice, type WalletSlice } from "./slices/wallet";
-import { createDepositSlice, type DepositSlice } from "./slices/deposit";
+import { createAgentSlice, type AgentSlice } from "./slices/agent";
 
-interface Store extends WalletSlice, DepositSlice {
+interface Store extends WalletSlice, AgentSlice {
   isLoading: boolean;
   error: string | null;
 }
@@ -14,5 +14,5 @@ export const useStore = create<Store>()((...args) => ({
 
   // Combine slices
   ...createWalletSlice(...args),
-  ...createDepositSlice(...args),
+  ...createAgentSlice(...args),
 }));
