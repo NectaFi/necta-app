@@ -80,8 +80,8 @@ export default function DashboardPage() {
   const mainPosition = walletData?.positions[0];
 
   return (
-    <div className="container mx-auto px-4 py-24">
-      <div className="mx-auto w-full max-w-[1000px] space-y-6">
+    <div className="container mx-auto h-[calc(100vh-72px)] overflow-y-auto px-4 py-12">
+      <div className="mx-auto w-full max-w-[1000px] space-y-6 pb-6">
         {/* Main Position Value */}
         <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
           <div className="flex items-center justify-between">
