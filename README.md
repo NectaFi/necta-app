@@ -17,7 +17,7 @@
 
 ## Features
 
-- **Multi-Agent Intelligence:** Three specialized AI agents collaborate to automatically optimize yields across multiple protocols, securing the highest APYs effortlessly.
+- **Multi-Agent Intelligence:** Three specialized AI agents Sentinel, Curator and Executor collaborate to automatically optimize yields across multiple protocols, securing the highest APYs effortlessly.
 - **Automated Rebalancing:** Continuously rebalances your portfolio to maximize returns-no manual tracking required.
 - **Self-Custodial:** Fully on-chain and self-custodial.
 - **DeFi UX Abstraction:** Simplifies the complex DeFi UX.
