@@ -1,37 +1,37 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Loader2, ChevronRight, Wallet, Shield } from "lucide-react"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Loader2, ChevronRight, Wallet, Shield } from "lucide-react";
 
-type SetupStep = "deploy" | "deposit"
+type SetupStep = "deploy" | "deposit";
 
 export default function SetupPage() {
-  const [currentStep, setCurrentStep] = useState<SetupStep>("deploy")
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const [currentStep, setCurrentStep] = useState<SetupStep>("deploy");
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleDeploy = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     // Simulate deployment
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    setIsLoading(false)
-    setCurrentStep("deposit")
-  }
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsLoading(false);
+    setCurrentStep("deposit");
+  };
 
   const handleDeposit = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     // Simulate deposit
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    setIsLoading(false)
-    router.push("/app/dashboard")
-  }
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsLoading(false);
+    router.push("/app/dashboard");
+  };
 
   return (
-    <main className="flex min-h-[calc(100vh-128px)] flex-col items-center justify-center px-4">
+    <main className="container mx-auto flex min-h-screen items-center justify-center px-4 pt-[72px]">
       <Card className="relative w-full max-w-[500px] overflow-hidden border border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
         {/* Progress Bar */}
         <div className="absolute inset-x-0 top-0 h-1 bg-white/[0.08]">
@@ -145,5 +145,5 @@ export default function SetupPage() {
         )}
       </Card>
     </main>
-  )
+  );
 }

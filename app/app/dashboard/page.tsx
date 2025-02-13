@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { useAppStore } from "@/lib/store"
-import { Card } from "@/components/ui/card"
+import { useEffect } from "react";
+import { useAppStore } from "@/lib/store";
+import { Card } from "@/components/ui/card";
 
 export default function DashboardPage() {
   const {
@@ -14,32 +14,32 @@ export default function DashboardPage() {
     fetchAgentStatus,
     fetchThoughts,
     fetchWalletData,
-  } = useAppStore()
+  } = useAppStore();
 
   useEffect(() => {
     // Initial fetch
-    fetchAgentStatus()
-    fetchThoughts()
-    fetchWalletData()
+    fetchAgentStatus();
+    fetchThoughts();
+    fetchWalletData();
 
     // Set up polling intervals
-    const statusInterval = setInterval(fetchAgentStatus, 10000) // Every 10s
-    const thoughtsInterval = setInterval(fetchThoughts, 5000) // Every 5s
-    const walletInterval = setInterval(fetchWalletData, 30000) // Every 30s
+    const statusInterval = setInterval(fetchAgentStatus, 10000); // Every 10s
+    const thoughtsInterval = setInterval(fetchThoughts, 5000); // Every 5s
+    const walletInterval = setInterval(fetchWalletData, 30000); // Every 30s
 
     return () => {
-      clearInterval(statusInterval)
-      clearInterval(thoughtsInterval)
-      clearInterval(walletInterval)
-    }
-  }, [fetchAgentStatus, fetchThoughts, fetchWalletData])
+      clearInterval(statusInterval);
+      clearInterval(thoughtsInterval);
+      clearInterval(walletInterval);
+    };
+  }, [fetchAgentStatus, fetchThoughts, fetchWalletData]);
 
   if (error) {
     return (
       <div className="flex h-[50vh] items-center justify-center">
         <p className="text-red-500">{error}</p>
       </div>
-    )
+    );
   }
 
   if (isLoading && !agents.length && !thoughts.length && !walletData) {
@@ -47,14 +47,14 @@ export default function DashboardPage() {
       <div className="flex h-[50vh] items-center justify-center">
         <p className="text-white/60">Loading dashboard data...</p>
       </div>
-    )
+    );
   }
 
   // Get the first position for the main display
-  const mainPosition = walletData?.positions[0]
+  const mainPosition = walletData?.positions[0];
 
   return (
-    <div className="flex min-h-[calc(100vh-64px)] flex-col px-4 py-6">
+    <div className="container mx-auto flex min-h-screen flex-col px-4 pt-[72px]">
       <div className="mx-auto w-full max-w-[1000px] space-y-6">
         {/* Main Position Value */}
         <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
@@ -131,5 +131,5 @@ export default function DashboardPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

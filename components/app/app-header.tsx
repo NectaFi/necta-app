@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
-import { motion } from "framer-motion"
-import { Logo } from "@/components/ui/logo"
-import { Button } from "@/components/ui/button"
-import { useWindow } from "@/hooks/use-window"
-import { APP_MENU } from "@/lib/constants/app"
-import { Connect } from "@/components/app/connect"
-import { NetworkSelector } from "@/components/app/network-selector"
-import { useEffect } from "react"
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Logo } from "@/components/ui/logo";
+import { Button } from "@/components/ui/button";
+import { useWindow } from "@/hooks/use-window";
+import { APP_MENU } from "@/lib/constants/app";
+import { Connect } from "@/components/app/connect";
+import { NetworkSelector } from "@/components/app/network-selector";
+import { useEffect } from "react";
 
 export function AppHeader() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  const { isMobile } = useWindow()
+  const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { isMobile } = useWindow();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   return (
     <motion.header
@@ -33,19 +33,16 @@ export function AppHeader() {
         </div>
 
         <div className="hidden flex-1 items-center justify-center md:flex">
-          <ul className="flex items-center space-x-10">
-            {APP_MENU.map((route) => (
-              <li key={route.href}>
-                <Link
-                  href={route.href}
-                  className="flex items-center gap-2 font-medium text-[16px] text-white/70 transition-colors hover:text-[#F29600]"
-                >
-                  {route.icon}
-                  {route.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {APP_MENU.map((route) => (
+            <Link
+              key={route.href}
+              href={route.href}
+              className="flex items-center gap-2 font-medium text-[16px] text-white/70 transition-colors hover:text-[#F29600]"
+            >
+              {route.icon}
+              {route.title}
+            </Link>
+          ))}
         </div>
 
         <div className="flex items-center gap-2 px-2.5">
@@ -71,22 +68,19 @@ export function AppHeader() {
 
       {mounted && isOpen && isMobile && (
         <div className="mt-2 rounded-[24px] border border-white/[0.1] bg-zinc-900/[0.65] p-4 backdrop-blur-md md:hidden">
-          <ul className="space-y-3">
-            {APP_MENU.map((route) => (
-              <li key={route.href}>
-                <Link
-                  href={route.href}
-                  className="flex items-center gap-2 rounded-[24px] px-4 py-2 text-[16px] text-white/70 transition-colors hover:text-[#F29600]"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {route.icon}
-                  {route.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {APP_MENU.map((route) => (
+            <Link
+              key={route.href}
+              href={route.href}
+              className="flex items-center gap-2 rounded-[24px] px-4 py-2 text-[16px] text-white/70 transition-colors hover:text-[#F29600]"
+              onClick={() => setIsOpen(false)}
+            >
+              {route.icon}
+              {route.title}
+            </Link>
+          ))}
         </div>
       )}
     </motion.header>
-  )
+  );
 }
