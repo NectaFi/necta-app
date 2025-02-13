@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { motion } from "framer-motion";
-import { Logo } from "@/components/ui/logo";
-import { Connect } from "@/components/app/connect";
-import { NetworkSelector } from "@/components/app/network-selector";
+import { motion } from "framer-motion"
+import { Logo } from "@/components/ui/logo"
+import { Connect } from "@/components/app/connect"
+import { NetworkSelector } from "@/components/app/network-selector"
 
 export function AppHeader() {
   return (
@@ -23,5 +23,5 @@ export function AppHeader() {
         </div>
       </nav>
     </motion.header>
-  );
+  )
 }

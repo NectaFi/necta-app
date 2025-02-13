@@ -1,48 +1,48 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Loader2 } from "lucide-react"
 
 interface DeactivateModalProps {
-  onDeactivate: () => Promise<void>;
-  trigger: React.ReactNode;
+  onDeactivate: () => Promise<void>
+  trigger: React.ReactNode
 }
 
 export function DeactivateModal({
   onDeactivate,
   trigger,
 }: DeactivateModalProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleDeactivate = async () => {
     try {
-      setError(null);
-      setIsLoading(true);
-      await onDeactivate();
+      setError(null)
+      setIsLoading(true)
+      await onDeactivate()
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Failed to deactivate agents"
-      );
+        err instanceof Error ? err.message : "Failed to deactivate agents",
+      )
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
         <DialogHeader>
-          <DialogTitle className="text-xl text-white">
+          <DialogTitle className="text-white text-xl">
             Deactivate Agents
           </DialogTitle>
         </DialogHeader>
@@ -56,7 +56,7 @@ export function DeactivateModal({
             </p>
           </div>
 
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <Button
             className="w-full gap-2 bg-red-500 py-6 text-white hover:bg-red-500/80"
@@ -72,5 +72,5 @@ export function DeactivateModal({
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

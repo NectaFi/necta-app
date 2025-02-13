@@ -1,21 +1,21 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react";
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Loader2 } from "lucide-react"
 
 interface WithdrawModalProps {
-  maxAmount: string;
-  onWithdraw: (amount: string) => Promise<void>;
-  trigger: React.ReactNode;
+  maxAmount: string
+  onWithdraw: (amount: string) => Promise<void>
+  trigger: React.ReactNode
 }
 
 export function WithdrawModal({
@@ -23,28 +23,28 @@ export function WithdrawModal({
   onWithdraw,
   trigger,
 }: WithdrawModalProps) {
-  const [amount, setAmount] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [amount, setAmount] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleWithdraw = async () => {
     try {
-      setError(null);
-      setIsLoading(true);
-      await onWithdraw(amount);
+      setError(null)
+      setIsLoading(true)
+      await onWithdraw(amount)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to withdraw funds");
+      setError(err instanceof Error ? err.message : "Failed to withdraw funds")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
         <DialogHeader>
-          <DialogTitle className="text-xl text-white">
+          <DialogTitle className="text-white text-xl">
             Withdraw Funds
           </DialogTitle>
         </DialogHeader>
@@ -62,7 +62,7 @@ export function WithdrawModal({
             </p>
           </div>
 
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <div className="rounded-lg bg-white/[0.05] p-4">
             <h3 className="font-medium text-white">Important Note</h3>
@@ -92,5 +92,5 @@ export function WithdrawModal({
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

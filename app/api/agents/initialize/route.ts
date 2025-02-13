@@ -1,18 +1,18 @@
-import { NextResponse } from "next/server";
-import { env } from "@/env";
+import { NextResponse } from "next/server"
+import { env } from "@/env"
 
 // This will be the URL of your agent backend
-const AGENT_API_URL = env.AGENT_API_URL || "http://localhost:3001";
+const AGENT_API_URL = env.AGENT_API_URL || "http://localhost:3001"
 
 export async function POST(request: Request) {
   try {
-    const { brahmaAccount } = await request.json();
+    const { brahmaAccount } = await request.json()
 
     if (!brahmaAccount) {
       return NextResponse.json(
         { error: "Brahma account address is required" },
-        { status: 400 }
-      );
+        { status: 400 },
+      )
     }
 
     // Call the agent backend to initialize agents
@@ -22,19 +22,19 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ brahmaAccount }),
-    });
+    })
 
     if (!response.ok) {
-      throw new Error("Failed to initialize agents");
+      throw new Error("Failed to initialize agents")
     }
 
-    const data = await response.json();
-    return NextResponse.json(data);
+    const data = await response.json()
+    return NextResponse.json(data)
   } catch (error) {
-    console.error("Failed to initialize agents:", error);
+    console.error("Failed to initialize agents:", error)
     return NextResponse.json(
       { error: "Failed to initialize agents" },
-      { status: 500 }
-    );
+      { status: 500 },
+    )
   }
 }

@@ -1,47 +1,47 @@
-"use client";
+"use client"
 
-import { useAccount } from "wagmi";
-import { useWalletStore } from "@/lib/store/slices/wallet";
-import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Deposit } from "@/components/app/setup/deposit";
+import { useAccount } from "wagmi"
+import { useWalletStore } from "@/lib/store/slices/wallet"
+import { Button } from "@/components/ui/button"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { Deposit } from "@/components/app/setup/deposit"
 
 export default function SetupPage() {
-  const { address, isConnected } = useAccount();
-  const router = useRouter();
+  const { address, isConnected } = useAccount()
+  const router = useRouter()
 
   const { brahmaAccount, deploymentStatus, deployBrahmaAccount } =
-    useWalletStore();
+    useWalletStore()
 
   // Redirect if not connected
   useEffect(() => {
     if (!isConnected) {
-      router.push("/app");
+      router.push("/app")
     }
-  }, [isConnected, router]);
+  }, [isConnected, router])
 
   // Handle Brahma deployment
   const handleDeploy = async () => {
-    if (!address) return;
-    await deployBrahmaAccount(address);
-  };
+    if (!address) return
+    await deployBrahmaAccount(address)
+  }
 
   // Handle successful deposit
   const handleDepositSuccess = () => {
-    router.push("/app/dashboard");
-  };
+    router.push("/app/dashboard")
+  }
 
-  if (!isConnected) return null;
+  if (!isConnected) return null
 
   return (
-    <div className="container max-w-2xl mx-auto py-8 space-y-8">
+    <div className="container mx-auto max-w-2xl space-y-8 py-8">
       <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Setup Your Account</h1>
+        <h1 className="font-bold text-2xl">Setup Your Account</h1>
 
         {/* Step 1: Deploy Brahma Account */}
-        <div className="p-6 rounded-lg bg-card border">
-          <h2 className="text-xl font-semibold mb-4">
+        <div className="rounded-lg border bg-card p-6">
+          <h2 className="mb-4 font-semibold text-xl">
             Step 1: Deploy Brahma Account
           </h2>
           <Button
@@ -53,15 +53,15 @@ export default function SetupPage() {
             {deploymentStatus === "deploying"
               ? "Deploying..."
               : brahmaAccount
-              ? "Account Deployed"
-              : "Deploy Account"}
+                ? "Account Deployed"
+                : "Deploy Account"}
           </Button>
         </div>
 
         {/* Step 2: Initial Deposit */}
         {brahmaAccount && (
-          <div className="p-6 rounded-lg bg-card border">
-            <h2 className="text-xl font-semibold mb-4">
+          <div className="rounded-lg border bg-card p-6">
+            <h2 className="mb-4 font-semibold text-xl">
               Step 2: Initial Deposit
             </h2>
             <Deposit
@@ -72,5 +72,5 @@ export default function SetupPage() {
         )}
       </div>
     </div>
-  );
+  )
 }
