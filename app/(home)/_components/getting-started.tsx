@@ -1,10 +1,10 @@
-import { GETTING_STARTED_STEPS } from "@/lib/constants/home";
+import { GETTING_STARTED_STEPS } from "@/lib/constants/home"
 
 type Step = {
-  number: number;
-  title: string;
-  description: string;
-};
+  number: number
+  title: string
+  description: string
+}
 
 export function GettingStarted() {
   return (
@@ -17,7 +17,7 @@ export function GettingStarted() {
           <h2 className="mb-4 font-bold text-4xl text-[#23191A] tracking-tight sm:text-5xl">
             Deposit Once, Earn Highest Yields Across Protocols
           </h2>
-          <p className="text-lg text-[#23191A]/70">
+          <p className="text-[#23191A]/70 text-lg">
             Simply deposit USDC once and earn optimized, high-risk yields across
             multiple protocols—24/7. Getting started is really easy.
           </p>
@@ -30,7 +30,7 @@ export function GettingStarted() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 function StepCard({ number, title, description }: Step) {
@@ -40,7 +40,7 @@ function StepCard({ number, title, description }: Step) {
         <span className="font-semibold text-lg text-white">{number}</span>
       </div>
       <h3 className="font-bold text-[#23191A] text-xl">{title}</h3>
-      <p className="text-base text-[#23191A]/70">{description}</p>
+      <p className="text-[#23191A]/70 text-base">{description}</p>
     </div>
-  );
+  )
 }

@@ -1,31 +1,31 @@
-"use client";
+"use client"
 
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { MoveRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-import { Waves } from "@/components/ui/waves-background";
-import Link from "next/link";
+import { useEffect, useMemo, useState } from "react"
+import { motion } from "framer-motion"
+import { MoveRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useTheme } from "next-themes"
+import { Waves } from "@/components/ui/waves-background"
+import Link from "next/link"
 
 function Hero() {
-  const { theme } = useTheme();
-  const [titleNumber, setTitleNumber] = useState(0);
+  const { theme } = useTheme()
+  const [titleNumber, setTitleNumber] = useState(0)
   const titles = useMemo(
     () => ["yield optimization", "portfolio rebalancing", "yield strategies"],
-    []
-  );
+    [],
+  )
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (titleNumber === titles.length - 1) {
-        setTitleNumber(0);
+        setTitleNumber(0)
       } else {
-        setTitleNumber(titleNumber + 1);
+        setTitleNumber(titleNumber + 1)
       }
-    }, 2000);
-    return () => clearTimeout(timeoutId);
-  }, [titleNumber, titles]);
+    }, 2000)
+    return () => clearTimeout(timeoutId)
+  }, [titleNumber, titles])
 
   return (
     <div className="relative w-full bg-[#101010]">
@@ -97,7 +97,7 @@ function Hero() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export { Hero };
+export { Hero }

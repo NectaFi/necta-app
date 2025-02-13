@@ -1,8 +1,9 @@
-"use client";
+"use client"
 
-import { useEffect } from "react";
-import { useAppStore } from "@/lib/store";
-import { Card } from "@/components/ui/card";
+import { useEffect } from "react"
+import { useAppStore } from "@/lib/store"
+import { Card } from "@/components/ui/card"
+import { AgentStatusCard } from "@/components/dashboard/agent-status-card"
 
 export default function DashboardPage() {
   const {
@@ -14,47 +15,47 @@ export default function DashboardPage() {
     fetchAgentStatus,
     fetchThoughts,
     fetchWalletData,
-  } = useAppStore();
+  } = useAppStore()
 
   useEffect(() => {
     // Initial fetch
-    fetchAgentStatus();
-    fetchThoughts();
-    fetchWalletData();
+    fetchAgentStatus()
+    fetchThoughts()
+    fetchWalletData()
 
     // Set up polling intervals
-    const statusInterval = setInterval(fetchAgentStatus, 10000); // Every 10s
-    const thoughtsInterval = setInterval(fetchThoughts, 5000); // Every 5s
-    const walletInterval = setInterval(fetchWalletData, 30000); // Every 30s
+    const statusInterval = setInterval(fetchAgentStatus, 10000) // Every 10s
+    const thoughtsInterval = setInterval(fetchThoughts, 5000) // Every 5s
+    const walletInterval = setInterval(fetchWalletData, 30000) // Every 30s
 
     return () => {
-      clearInterval(statusInterval);
-      clearInterval(thoughtsInterval);
-      clearInterval(walletInterval);
-    };
-  }, [fetchAgentStatus, fetchThoughts, fetchWalletData]);
+      clearInterval(statusInterval)
+      clearInterval(thoughtsInterval)
+      clearInterval(walletInterval)
+    }
+  }, [fetchAgentStatus, fetchThoughts, fetchWalletData])
 
   if (error) {
     return (
-      <div className="flex h-[50vh] items-center justify-center">
+      <div className="container mx-auto flex min-h-[calc(100vh-72px)] items-center justify-center px-4">
         <p className="text-red-500">{error}</p>
       </div>
-    );
+    )
   }
 
   if (isLoading && !agents.length && !thoughts.length && !walletData) {
     return (
-      <div className="flex h-[50vh] items-center justify-center">
+      <div className="container mx-auto flex min-h-[calc(100vh-72px)] items-center justify-center px-4">
         <p className="text-white/60">Loading dashboard data...</p>
       </div>
-    );
+    )
   }
 
   // Get the first position for the main display
-  const mainPosition = walletData?.positions[0];
+  const mainPosition = walletData?.positions[0]
 
   return (
-    <div className="container mx-auto flex min-h-screen flex-col px-4 pt-[72px]">
+    <div className="container mx-auto px-4 py-6">
       <div className="mx-auto w-full max-w-[1000px] space-y-6">
         {/* Main Position Value */}
         <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
@@ -102,6 +103,13 @@ export default function DashboardPage() {
           </div>
         </Card>
 
+        {/* Agent Status Cards */}
+        <div className="grid gap-4 md:grid-cols-3">
+          {agents.map((agent) => (
+            <AgentStatusCard key={agent.agent} agent={agent} />
+          ))}
+        </div>
+
         {/* Agent Execution History */}
         <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
           <h2 className="mb-4 font-medium text-lg text-white">
@@ -131,5 +139,5 @@ export default function DashboardPage() {
         </Card>
       </div>
     </div>
-  );
+  )
 }

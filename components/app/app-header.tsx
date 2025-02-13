@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
-import { Logo } from "@/components/ui/logo";
-import { Button } from "@/components/ui/button";
-import { useWindow } from "@/hooks/use-window";
-import { APP_MENU } from "@/lib/constants/app";
-import { Connect } from "@/components/app/connect";
-import { NetworkSelector } from "@/components/app/network-selector";
-import { useEffect } from "react";
+import Link from "next/link"
+import { useState } from "react"
+import { Menu, X } from "lucide-react"
+import { motion } from "framer-motion"
+import { Logo } from "@/components/ui/logo"
+import { Button } from "@/components/ui/button"
+import { useWindow } from "@/hooks/use-window"
+import { APP_MENU } from "@/lib/constants/app"
+import { Connect } from "@/components/app/connect"
+import { NetworkSelector } from "@/components/app/network-selector"
+import { useEffect } from "react"
 
 export function AppHeader() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { isMobile } = useWindow();
+  const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const { isMobile } = useWindow()
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   return (
     <motion.header
@@ -82,5 +82,5 @@ export function AppHeader() {
         </div>
       )}
     </motion.header>
-  );
+  )
 }

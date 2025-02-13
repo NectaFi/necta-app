@@ -1,34 +1,34 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Loader2, ChevronRight, Wallet, Shield } from "lucide-react";
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Loader2, ChevronRight, Wallet, Shield } from "lucide-react"
 
-type SetupStep = "deploy" | "deposit";
+type SetupStep = "deploy" | "deposit"
 
 export default function SetupPage() {
-  const [currentStep, setCurrentStep] = useState<SetupStep>("deploy");
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [currentStep, setCurrentStep] = useState<SetupStep>("deploy")
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const handleDeploy = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
     // Simulate deployment
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsLoading(false);
-    setCurrentStep("deposit");
-  };
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    setIsLoading(false)
+    setCurrentStep("deposit")
+  }
 
   const handleDeposit = async () => {
-    setIsLoading(true);
+    setIsLoading(true)
     // Simulate deposit
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsLoading(false);
-    router.push("/app/dashboard");
-  };
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    setIsLoading(false)
+    router.push("/app/dashboard")
+  }
 
   return (
     <main className="container mx-auto flex min-h-screen items-center justify-center px-4 pt-[72px]">
@@ -138,12 +138,12 @@ export default function SetupPage() {
                 ) : (
                   <ChevronRight className="h-5 w-5" />
                 )}
-                Deposit & Start Earning
+                Deposit & Activate Agents
               </Button>
             </div>
           </>
         )}
       </Card>
     </main>
-  );
+  )
 }
