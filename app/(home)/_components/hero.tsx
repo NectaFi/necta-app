@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { useEffect, useMemo, useState } from "react"
-import { motion } from "framer-motion"
-import { MoveRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
-import { Waves } from "@/components/ui/waves-background"
-import Link from "next/link"
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { MoveRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import { Waves } from "@/components/ui/waves-background";
+import Link from "next/link";
 
 function Hero() {
-  const { theme } = useTheme()
-  const [titleNumber, setTitleNumber] = useState(0)
+  const { theme } = useTheme();
+  const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
     () => ["yield optimization", "portfolio rebalancing", "yield strategies"],
-    [],
-  )
+    []
+  );
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (titleNumber === titles.length - 1) {
-        setTitleNumber(0)
+        setTitleNumber(0);
       } else {
-        setTitleNumber(titleNumber + 1)
+        setTitleNumber(titleNumber + 1);
       }
-    }, 2000)
-    return () => clearTimeout(timeoutId)
-  }, [titleNumber, titles])
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber, titles]);
 
   return (
     <div className="relative w-full bg-[#101010]">
@@ -49,7 +49,7 @@ function Hero() {
       <div className="container relative mx-auto">
         <div className="flex flex-col items-center justify-center gap-8 py-16 lg:py-32">
           <div className="flex flex-col gap-4">
-            <h1 className="max-w-2xl text-center font-regular text-5xl text-white tracking-tighter md:text-6xl">
+            <h1 className="max-w-2xl text-center font-regular text-5xl text-white tracking-tighter md:text-7xl">
               <span className="text-spektr-cyan-50">
                 The agentic platform for automated DeFi
               </span>
@@ -97,7 +97,7 @@ function Hero() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export { Hero }
+export { Hero };
