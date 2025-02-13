@@ -8,6 +8,16 @@ import { Button } from "@/components/ui/button";
 import { WithdrawModal } from "@/components/dashboard/withdraw-modal";
 import { DeactivateModal } from "@/components/dashboard/deactivate-modal";
 import { useRouter } from "next/navigation";
+import {
+  Shield,
+  Copy,
+  ExternalLink,
+  Plus,
+  ArrowUpRight,
+  Power,
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export default function DashboardPage() {
   const {
@@ -128,94 +138,133 @@ export default function DashboardPage() {
         {/* Smart Account Management */}
         <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
           <div className="flex items-center justify-between">
-            <div>
-              <h2 className="font-medium text-lg text-white">
-                Brahma Safe Account
-              </h2>
-              <p className="mt-1 text-sm text-white/60">
-                Your self-custodial smart account for automated yield
-                optimization
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.08]">
+                <Shield className="h-5 w-5 text-[#F29600]" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="font-medium text-lg text-white">
+                    Brahma Safe Account
+                  </h2>
+                  <Badge
+                    variant="outline"
+                    className="border-[#F29600]/20 bg-[#F29600]/10 text-[#F29600]"
+                  >
+                    Safe
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2">
+                  <p className="text-sm text-white/60">
+                    {walletData?.address
+                      ? `${walletData.address.slice(
+                          0,
+                          6
+                        )}...${walletData.address.slice(-4)}`
+                      : "Not deployed"}
+                  </p>
+                  {walletData?.address && (
+                    <div className="flex gap-1">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 text-white/40 hover:text-white"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            walletData.address || ""
+                          );
+                        }}
+                      >
+                        <Copy className="h-3 w-3" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 text-white/40 hover:text-white"
+                        onClick={() => {
+                          window.open(
+                            `https://basescan.org/address/${walletData.address}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-white/60">Total Assets</p>
+              <p className="font-semibold text-2xl text-white">
+                ${walletData?.totalValue.toFixed(2) || "0.00"}
               </p>
             </div>
-            <div className="flex gap-3">
-              <DeactivateModal
-                onDeactivate={handleDeactivate}
-                trigger={
-                  <Button
-                    variant="outline"
-                    className="border-red-500/20 bg-red-500/10 text-red-500 hover:bg-red-500/20"
-                  >
-                    Deactivate Agents
-                  </Button>
-                }
-              />
+          </div>
+
+          <div className="mt-6 space-y-4">
+            {/* Assets List */}
+            <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-8 w-8">
+                    <Image
+                      src="/tokens/usdc.svg"
+                      alt="USDC"
+                      fill
+                      className="rounded-full"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white">USDC</p>
+                    <p className="text-sm text-white/60">
+                      {walletData?.balance || "0"} USDC
+                    </p>
+                  </div>
+                </div>
+                <p className="font-medium text-white">
+                  ${walletData?.totalValue.toFixed(2) || "0.00"}
+                </p>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="grid gap-3 sm:grid-cols-3">
+              <Button
+                className="gap-2 bg-[#F29600] font-medium text-white hover:bg-[#F29600]/80"
+                onClick={() => router.push("/app/setup")}
+              >
+                <Plus className="h-4 w-4" />
+                Deposit
+              </Button>
+
               <WithdrawModal
                 maxAmount={mainPosition?.amount || "0"}
                 onWithdraw={handleWithdraw}
                 trigger={
                   <Button
                     variant="outline"
-                    className="border-[#F29600]/20 bg-[#F29600]/10 text-[#F29600] hover:bg-[#F29600]/20"
+                    className="gap-2 border-white/10 font-medium hover:bg-white/5"
                   >
-                    Withdraw Funds
+                    <ArrowUpRight className="h-4 w-4" />
+                    Withdraw
                   </Button>
                 }
               />
-            </div>
-          </div>
-          <div className="mt-6 space-y-4">
-            <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-white/60">Safe Account Address</p>
-                  <p className="mt-1 font-medium text-white">
-                    {walletData?.address || "Not deployed"}
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="ghost"
-                    className="text-white/60 hover:text-white"
-                    onClick={() => {
-                      navigator.clipboard.writeText(walletData?.address || "");
-                    }}
-                  >
-                    Copy Address
-                  </Button>
-                  {walletData?.address && (
-                    <Button
-                      variant="ghost"
-                      className="text-white/60 hover:text-white"
-                      onClick={() => {
-                        window.open(
-                          `https://basescan.org/address/${walletData.address}`,
-                          "_blank"
-                        );
-                      }}
-                    >
-                      View on Explorer
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
 
-            <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-white/60">Safe Account Balance</p>
-                  <p className="mt-1 font-medium text-white">
-                    {walletData?.balance || "0"} USDC
-                  </p>
-                </div>
-                <Button
-                  variant="outline"
-                  className="border-[#F29600]/20 bg-[#F29600]/10 text-[#F29600] hover:bg-[#F29600]/20"
-                  onClick={() => router.push("/app/setup")}
-                >
-                  Deposit More
-                </Button>
-              </div>
+              <DeactivateModal
+                onDeactivate={handleDeactivate}
+                trigger={
+                  <Button
+                    variant="outline"
+                    className="gap-2 border-red-500/20 bg-red-500/10 font-medium text-red-500 hover:bg-red-500/20"
+                  >
+                    <Power className="h-4 w-4" />
+                    Deactivate
+                  </Button>
+                }
+              />
             </div>
           </div>
         </Card>
