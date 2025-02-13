@@ -1,12 +1,6 @@
-import { LayoutGrid, Github, Twitter } from "lucide-react"
+import { LayoutGrid, Github, Twitter } from "lucide-react";
 
-export const APP_MENU = [
-  {
-    title: "Dashboard",
-    href: "/app/dashboard",
-    icon: <LayoutGrid className="h-5 w-5" />,
-  },
-] as const
+export const APP_MENU = [] as const;
 
 export const APP_LINKS = [
   {
@@ -17,7 +11,7 @@ export const APP_LINKS = [
     name: "Docs",
     href: "http://blog.nectafi.xyz/docs",
   },
-] as const
+] as const;
 
 export const APP_SOCIALS = [
   {
@@ -30,7 +24,7 @@ export const APP_SOCIALS = [
     href: "https://github.com/nectalabs",
     icon: Github,
   },
-] as const
+] as const;
 
 export const NETWORKS = [
   {
@@ -41,7 +35,7 @@ export const NETWORKS = [
     name: "Arbitrum",
     icon: "/protocols/arbitrum.svg",
   },
-] as const
+] as const;
 
 export const PROTOCOLS = [
   {
@@ -59,4 +53,4 @@ export const PROTOCOLS = [
     apy: "10.78%",
     icon: "/protocols/morpho.png",
   },
-] as const
+] as const;
