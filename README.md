@@ -1,5 +1,5 @@
 <a href="https://nectafi.xyz">
-  <img alt="The agentic platform for automated DeFi." src="/logo/banner.png">
+  <img alt="The agentic platform for automated DeFi." src="public/logo/banner.png">
   <h1 align="center">NectaFi - The agentic platform for automated DeFi yield optimization and portfolio management.</h1>
 </a>
 
