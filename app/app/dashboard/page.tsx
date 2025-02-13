@@ -4,6 +4,10 @@ import { useEffect } from "react";
 import { useAppStore } from "@/lib/store";
 import { Card } from "@/components/ui/card";
 import { AgentStatusCard } from "@/components/dashboard/agent-status-card";
+import { Button } from "@/components/ui/button";
+import { WithdrawModal } from "@/components/dashboard/withdraw-modal";
+import { DeactivateModal } from "@/components/dashboard/deactivate-modal";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
   const {
@@ -16,6 +20,7 @@ export default function DashboardPage() {
     fetchThoughts,
     fetchWalletData,
   } = useAppStore();
+  const router = useRouter();
 
   useEffect(() => {
     // Initial fetch
@@ -34,6 +39,16 @@ export default function DashboardPage() {
       clearInterval(walletInterval);
     };
   }, [fetchAgentStatus, fetchThoughts, fetchWalletData]);
+
+  const handleWithdraw = async (amount: string) => {
+    // TODO: Implement withdraw functionality
+    console.log("Withdrawing amount:", amount);
+  };
+
+  const handleDeactivate = async () => {
+    // TODO: Implement deactivate functionality
+    console.log("Deactivating agents");
+  };
 
   if (error) {
     return (
@@ -109,6 +124,101 @@ export default function DashboardPage() {
             <AgentStatusCard key={agent.agent} agent={agent} />
           ))}
         </div>
+
+        {/* Smart Account Management */}
+        <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="font-medium text-lg text-white">
+                Brahma Safe Account
+              </h2>
+              <p className="mt-1 text-sm text-white/60">
+                Your self-custodial smart account for automated yield
+                optimization
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <DeactivateModal
+                onDeactivate={handleDeactivate}
+                trigger={
+                  <Button
+                    variant="outline"
+                    className="border-red-500/20 bg-red-500/10 text-red-500 hover:bg-red-500/20"
+                  >
+                    Deactivate Agents
+                  </Button>
+                }
+              />
+              <WithdrawModal
+                maxAmount={mainPosition?.amount || "0"}
+                onWithdraw={handleWithdraw}
+                trigger={
+                  <Button
+                    variant="outline"
+                    className="border-[#F29600]/20 bg-[#F29600]/10 text-[#F29600] hover:bg-[#F29600]/20"
+                  >
+                    Withdraw Funds
+                  </Button>
+                }
+              />
+            </div>
+          </div>
+          <div className="mt-6 space-y-4">
+            <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-white/60">Safe Account Address</p>
+                  <p className="mt-1 font-medium text-white">
+                    {walletData?.address || "Not deployed"}
+                  </p>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant="ghost"
+                    className="text-white/60 hover:text-white"
+                    onClick={() => {
+                      navigator.clipboard.writeText(walletData?.address || "");
+                    }}
+                  >
+                    Copy Address
+                  </Button>
+                  {walletData?.address && (
+                    <Button
+                      variant="ghost"
+                      className="text-white/60 hover:text-white"
+                      onClick={() => {
+                        window.open(
+                          `https://basescan.org/address/${walletData.address}`,
+                          "_blank"
+                        );
+                      }}
+                    >
+                      View on Explorer
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-white/[0.08] bg-white/[0.02] p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-white/60">Safe Account Balance</p>
+                  <p className="mt-1 font-medium text-white">
+                    {walletData?.balance || "0"} USDC
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  className="border-[#F29600]/20 bg-[#F29600]/10 text-[#F29600] hover:bg-[#F29600]/20"
+                  onClick={() => router.push("/app/setup")}
+                >
+                  Deposit More
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Card>
 
         {/* Agent Execution History */}
         <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-6 backdrop-blur-md">
