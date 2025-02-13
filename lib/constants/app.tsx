@@ -1,6 +1,12 @@
 import { LayoutGrid, Github, Twitter } from "lucide-react";
 
-export const APP_MENU = [] as const;
+interface AppMenuItem {
+  href: string;
+  title: string;
+  icon?: React.ReactNode;
+}
+
+export const APP_MENU: AppMenuItem[] = [];
 
 export const APP_LINKS = [
   {
