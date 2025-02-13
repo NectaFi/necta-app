@@ -11,13 +11,13 @@ import { faqs } from "@/lib/constants/home"
 
 export function FAQ() {
   return (
-    <section className="relative py-16 sm:py-24">
+    <section className="relative bg-[#101010] py-16 sm:py-24">
       <div className="container mx-auto max-w-[1150px] px-4">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="mb-4 font-bold text-4xl text-[#23191A] tracking-tight sm:text-5xl">
-            Frequently Asked Questionss
+          <h2 className="mb-4 font-bold text-4xl text-white tracking-tight sm:text-5xl">
+            FAQ
           </h2>
-          <p className="text-[#23191A]/80 text-lg">
+          <p className="text-lg text-white/60">
             Common questions about NectaFi.
           </p>
         </div>
@@ -28,20 +28,20 @@ export function FAQ() {
               <AccordionItem
                 key={faq.id}
                 value={faq.id}
-                className="border-[#23191A]/20 border-t"
+                className="border-white/10 border-t"
               >
                 <AccordionTrigger className="group py-6">
                   <div className="flex w-full items-center justify-between">
-                    <span className="text-left font-medium text-[#23191A] text-xl">
+                    <span className="text-left font-medium text-white text-xl">
                       {faq.question}
                     </span>
-                    <span className="ml-4 text-[#23191A]/60 text-xl transition-transform duration-200 group-data-[state=open]:rotate-45">
+                    <span className="ml-4 text-white/60 text-xl transition-transform duration-200 group-data-[state=open]:rotate-45">
                       +
                     </span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="pb-6">
-                  <p className="text-[#23191A]/70 text-base">{faq.answer}</p>
+                  <p className="text-base text-white/60">{faq.answer}</p>
                 </AccordionContent>
               </AccordionItem>
             ))}

@@ -49,7 +49,7 @@ function Hero() {
       <div className="container relative mx-auto">
         <div className="flex flex-col items-center justify-center gap-8 py-16 lg:py-32">
           <div className="flex flex-col gap-4">
-            <h1 className="max-w-2xl text-center font-regular text-5xl text-white tracking-tighter md:text-7xl">
+            <h1 className="max-w-2xl text-center font-regular text-5xl text-white tracking-tighter md:text-6xl">
               <span className="text-spektr-cyan-50">
                 The agentic platform for automated DeFi
               </span>

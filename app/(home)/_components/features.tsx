@@ -21,8 +21,7 @@ export function FeaturesSection() {
           {/* Grid Lines */}
           <div className="absolute inset-0 flex justify-between">
             <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-            <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-            <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+            <div className="w-px translate-x-[200%] bg-gradient-to-b from-transparent via-white/20 to-transparent" />
           </div>
 
           <div className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
