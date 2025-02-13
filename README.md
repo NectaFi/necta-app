@@ -1,5 +1,5 @@
 <a href="https://nectafi.xyz">
-  <img alt="The agentic platform for automated DeFi." src="logo/banner.png">
+  <img alt="The agentic platform for automated DeFi." src="/logo/banner.png">
   <h1 align="center">NectaFi - The agentic platform for automated DeFi yield optimization and portfolio management.</h1>
 </a>
 
@@ -69,6 +69,8 @@
 ## Deploy
 
 Follow the deployment guides for [Vercel](https://nextjs.org/learn-pages-router/basics/deploying-nextjs-app/deploy).
+
+## Agents
 
 Backend Repository: [necta-agents](https://github.com/NectaFi/necta-agents)
 
