@@ -77,3 +77,8 @@ Backend Repository: [necta-agents](https://github.com/NectaFi/necta-agents)
 ## Contributing
 
 Contributions are welcome! Please feel free to open an issue or submit a pull request.
+
+/ # Landing page with clear value proposition
+├── /app # Main entry point after connecting wallet
+├── /setup # Deploy smart account & initial deposit
+└── /dashboard # Combined dashboard with everything important
