@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAppStore } from "@/lib/store";
+import { useStore } from "@/lib/store";
 import { Card } from "@/components/ui/card";
 import { AgentStatusCard } from "@/components/dashboard/agent-status-card";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import type { AgentStatus, Thought } from "@/lib/types";
 
 export default function DashboardPage() {
   const {
@@ -29,7 +30,7 @@ export default function DashboardPage() {
     fetchAgentStatus,
     fetchThoughts,
     fetchWalletData,
-  } = useAppStore();
+  } = useStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -130,7 +131,7 @@ export default function DashboardPage() {
 
         {/* Agent Status Cards */}
         <div className="grid gap-4 md:grid-cols-3">
-          {agents.map((agent) => (
+          {agents.map((agent: AgentStatus) => (
             <AgentStatusCard key={agent.agent} agent={agent} />
           ))}
         </div>
@@ -275,7 +276,7 @@ export default function DashboardPage() {
             Agent Execution History
           </h2>
           <div className="space-y-3">
-            {thoughts.slice(0, 3).map((thought) => (
+            {thoughts.slice(0, 3).map((thought: Thought) => (
               <div
                 key={thought.id}
                 className="flex items-center justify-between rounded-lg border border-white/[0.08] bg-white/[0.02] p-3"

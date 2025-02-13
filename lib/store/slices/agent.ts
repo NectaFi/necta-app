@@ -1,5 +1,6 @@
-import type { StateCreator } from "zustand"
-import type { AgentStatus, Thought } from "@/lib/types"
+import type { StateCreator } from "zustand";
+import { api } from "@/lib/api/client";
+import type { AgentStatus, Thought } from "@/lib/types";
 
 // Mock data for development
 const MOCK_AGENTS: AgentStatus[] = [
@@ -24,7 +25,7 @@ const MOCK_AGENTS: AgentStatus[] = [
     description:
       "Executing optimized yield strategies with gas-efficient operations.",
   },
-]
+];
 
 const MOCK_THOUGHTS: Thought[] = [
   {
@@ -55,16 +56,17 @@ const MOCK_THOUGHTS: Thought[] = [
       report: "Rebalanced 1000 USDC to Morpho for 10.78% APY",
     },
   },
-]
+];
 
 export interface AgentSlice {
   // State
-  agents: AgentStatus[]
-  thoughts: Thought[]
+  agents: AgentStatus[];
+  thoughts: Thought[];
 
   // Actions
-  fetchAgentStatus: () => Promise<void>
-  fetchThoughts: () => Promise<void>
+  fetchAgentStatus: () => Promise<void>;
+  fetchThoughts: () => Promise<void>;
+  initializeAgents: (brahmaAccount: `0x${string}`) => Promise<void>;
 }
 
 export const createAgentSlice: StateCreator<
@@ -80,29 +82,36 @@ export const createAgentSlice: StateCreator<
   // Actions
   fetchAgentStatus: async () => {
     try {
-      set({ isLoading: true, error: null })
-      // Use mock data for now
-      set({ agents: MOCK_AGENTS })
-      // const data = await api.agents.getStatus()
-      // set({ agents: data })
+      set({ isLoading: true, error: null });
+      const data = await api.agents.getStatus();
+      set({ agents: data });
     } catch (_error) {
-      set({ error: "Failed to fetch agent status" })
+      set({ error: "Failed to fetch agent status" });
     } finally {
-      set({ isLoading: false })
+      set({ isLoading: false });
     }
   },
 
   fetchThoughts: async () => {
     try {
-      set({ isLoading: true, error: null })
-      // Use mock data for now
-      set({ thoughts: MOCK_THOUGHTS })
-      // const data = await api.agents.getThoughts()
-      // set({ thoughts: data })
+      set({ isLoading: true, error: null });
+      const data = await api.agents.getThoughts();
+      set({ thoughts: data });
     } catch (_error) {
-      set({ error: "Failed to fetch thoughts" })
+      set({ error: "Failed to fetch thoughts" });
     } finally {
-      set({ isLoading: false })
+      set({ isLoading: false });
     }
   },
-})
+
+  initializeAgents: async (brahmaAccount) => {
+    try {
+      set({ isLoading: true, error: null });
+      await api.agents.initialize(brahmaAccount);
+    } catch (_error) {
+      set({ error: "Failed to initialize agents" });
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+});
