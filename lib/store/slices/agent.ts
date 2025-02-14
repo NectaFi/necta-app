@@ -1,7 +1,7 @@
-import type { StateCreator } from "zustand";
-import { api } from "@/lib/api/client";
-import type { AgentStatus, Thought } from "@/lib/types";
-import type { Address } from "viem";
+import type { StateCreator } from "zustand"
+import { api } from "@/lib/api/client"
+import type { AgentStatus, Thought } from "@/lib/types"
+import type { Address } from "viem"
 
 // Mock data for development
 const _MOCK_AGENTS: AgentStatus[] = [
@@ -26,7 +26,7 @@ const _MOCK_AGENTS: AgentStatus[] = [
     description:
       "Executing optimized yield strategies with gas-efficient operations.",
   },
-];
+]
 
 const _MOCK_THOUGHTS: Thought[] = [
   {
@@ -57,23 +57,23 @@ const _MOCK_THOUGHTS: Thought[] = [
       report: "Rebalanced 1000 USDC to Morpho for 10.78% APY",
     },
   },
-];
+]
 
 export interface AgentSlice {
   // State
-  agents: AgentStatus[];
-  thoughts: Thought[];
-  isLoading: boolean;
-  error: string | null;
+  agents: AgentStatus[]
+  thoughts: Thought[]
+  isLoading: boolean
+  error: string | null
 
   // Actions
-  fetchAgentStatus: (account: Address) => Promise<void>;
-  fetchThoughts: () => Promise<void>;
-  initializeAgents: (brahmaAccount: Address) => Promise<void>;
+  fetchAgentStatus: (account: Address) => Promise<void>
+  fetchThoughts: () => Promise<void>
+  initializeAgents: (brahmaAccount: Address) => Promise<void>
 }
 
 export const createAgentSlice: StateCreator<AgentSlice, [], [], AgentSlice> = (
-  set
+  set,
 ) => ({
   // Initial state
   agents: [],
@@ -84,48 +84,48 @@ export const createAgentSlice: StateCreator<AgentSlice, [], [], AgentSlice> = (
   // Actions
   fetchAgentStatus: async (account) => {
     try {
-      set({ isLoading: true, error: null });
-      const data = await api.agents.getStatus(account);
-      set({ agents: data });
+      set({ isLoading: true, error: null })
+      const data = await api.agents.getStatus(account)
+      set({ agents: data })
     } catch (error) {
       set({
         error: `Failed to fetch agent status: ${
           error instanceof Error ? error.message : "Unknown error"
         }`,
-      });
+      })
     } finally {
-      set({ isLoading: false });
+      set({ isLoading: false })
     }
   },
 
   fetchThoughts: async () => {
     try {
-      set({ isLoading: true, error: null });
-      const data = await api.agents.getThoughts();
-      set({ thoughts: data });
+      set({ isLoading: true, error: null })
+      const data = await api.agents.getThoughts()
+      set({ thoughts: data })
     } catch (error) {
       set({
         error: `Failed to fetch thoughts: ${
           error instanceof Error ? error.message : "Unknown error"
         }`,
-      });
+      })
     } finally {
-      set({ isLoading: false });
+      set({ isLoading: false })
     }
   },
 
   initializeAgents: async (brahmaAccount) => {
     try {
-      set({ isLoading: true, error: null });
-      await api.agents.initialize(brahmaAccount);
+      set({ isLoading: true, error: null })
+      await api.agents.initialize(brahmaAccount)
     } catch (error) {
       set({
         error: `Failed to initialize agents: ${
           error instanceof Error ? error.message : "Unknown error"
         }`,
-      });
+      })
     } finally {
-      set({ isLoading: false });
+      set({ isLoading: false })
     }
   },
-});
+})
