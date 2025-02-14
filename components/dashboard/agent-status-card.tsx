@@ -1,23 +1,23 @@
-"use client"
+"use client";
 
-import { Card } from "@/components/ui/card"
-import type { AgentStatus } from "@/lib/types"
-import { cn } from "@/lib/utils"
-import { Brain, Eye, Terminal } from "lucide-react"
+import { Card } from "@/components/ui/card";
+import type { AgentStatus } from "@/lib/types";
+import { cn } from "@/lib/utils/index";
+import { Brain, Eye, Terminal } from "lucide-react";
 
 export function AgentStatusCard({ agent }: { agent: AgentStatus }) {
   const getAgentIcon = (agentName: string) => {
     switch (agentName.toLowerCase()) {
       case "sentinel":
-        return <Eye className="h-5 w-5" />
+        return <Eye className="h-5 w-5" />;
       case "curator":
-        return <Brain className="h-5 w-5" />
+        return <Brain className="h-5 w-5" />;
       case "executor":
-        return <Terminal className="h-5 w-5" />
+        return <Terminal className="h-5 w-5" />;
       default:
-        return null
+        return null;
     }
-  }
+  };
 
   return (
     <Card className="border-white/[0.08] bg-zinc-900/[0.65] p-4 backdrop-blur-md">
@@ -34,8 +34,8 @@ export function AgentStatusCard({ agent }: { agent: AgentStatus }) {
                 agent.status === "active"
                   ? "bg-green-500/10 text-green-500"
                   : agent.status === "processing"
-                    ? "bg-yellow-500/10 text-yellow-500"
-                    : "bg-red-500/10 text-red-500",
+                  ? "bg-yellow-500/10 text-yellow-500"
+                  : "bg-red-500/10 text-red-500"
               )}
             >
               <span className="relative flex h-2 w-2">
@@ -45,8 +45,8 @@ export function AgentStatusCard({ agent }: { agent: AgentStatus }) {
                     agent.status === "active"
                       ? "bg-green-500"
                       : agent.status === "processing"
-                        ? "bg-yellow-500"
-                        : "bg-red-500",
+                      ? "bg-yellow-500"
+                      : "bg-red-500"
                   )}
                 />
                 <span
@@ -55,8 +55,8 @@ export function AgentStatusCard({ agent }: { agent: AgentStatus }) {
                     agent.status === "active"
                       ? "bg-green-500"
                       : agent.status === "processing"
-                        ? "bg-yellow-500"
-                        : "bg-red-500",
+                      ? "bg-yellow-500"
+                      : "bg-red-500"
                   )}
                 />
               </span>
@@ -65,10 +65,10 @@ export function AgentStatusCard({ agent }: { agent: AgentStatus }) {
           </div>
           <p className="mt-1 text-sm text-white/60">{agent.description}</p>
           <p className="mt-2 text-white/40 text-xs">
-            Last active: {agent.lastActive}
+            Last active: {new Date(agent.lastActive).toLocaleString()}
           </p>
         </div>
       </div>
     </Card>
-  )
+  );
 }

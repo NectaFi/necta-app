@@ -1,58 +1,65 @@
-import { ConsoleKit } from "brahma-console-kit"
-import { env } from "@/env"
+import { ConsoleKit } from "brahma-console-kit";
+import { env } from "@/env";
+import { type Address } from "viem";
 
 export class ConsoleKitService {
-  private static instance: ConsoleKitService
-  private consoleKit: ConsoleKit
+  private static instance: ConsoleKitService;
+  private consoleKit: ConsoleKit;
 
   private constructor() {
     if (!env.NEXT_PUBLIC_CONSOLE_API_KEY) {
-      throw new Error("CONSOLE_API_KEY is required")
+      throw new Error("CONSOLE_API_KEY is required");
     }
-    this.consoleKit = new ConsoleKit(env.NEXT_PUBLIC_CONSOLE_API_KEY)
+    this.consoleKit = new ConsoleKit({
+      apiKey: env.NEXT_PUBLIC_CONSOLE_API_KEY,
+      baseUrl: "https://console.brahma.fi/api",
+      chainId: 8453, // Base mainnet
+      rpcUrl: `https://base-mainnet.g.alchemy.com/v2/${env.NEXT_PUBLIC_ALCHEMY_ID}`,
+    });
   }
 
   static getInstance(): ConsoleKitService {
     if (!ConsoleKitService.instance) {
-      ConsoleKitService.instance = new ConsoleKitService()
+      ConsoleKitService.instance = new ConsoleKitService();
     }
-    return ConsoleKitService.instance
+    return ConsoleKitService.instance;
   }
 
-  async deployBrahmaAccount(
-    userAddress: `0x${string}`,
-  ): Promise<`0x${string}`> {
+  async deployBrahmaAccount(userAddress: Address): Promise<Address> {
     try {
-      const response = await this.consoleKit.deployAccount({
+      const { accountAddress } = await this.consoleKit.deployAccount({
         owner: userAddress,
         chainId: 8453, // Base mainnet
-      })
-      return response.accountAddress as `0x${string}`
+      });
+      return accountAddress as Address;
     } catch (error) {
       throw new Error(
         `Failed to deploy Brahma account: ${
           error instanceof Error ? error.message : "Unknown error"
-        }`,
-      )
+        }`
+      );
     }
   }
 
-  async getAccountStatus(accountAddress: `0x${string}`): Promise<{
-    isDeployed: boolean
-    isActive: boolean
+  async getAccountStatus(accountAddress: Address): Promise<{
+    isDeployed: boolean;
+    isActive: boolean;
   }> {
     try {
-      const status = await this.consoleKit.getAccountStatus(accountAddress)
+      const { isDeployed, isActive } = await this.consoleKit.getAccountStatus({
+        accountAddress,
+        chainId: 8453, // Base mainnet
+      });
       return {
-        isDeployed: status.isDeployed,
-        isActive: status.isActive,
-      }
+        isDeployed,
+        isActive,
+      };
     } catch (error) {
       throw new Error(
         `Failed to get account status: ${
           error instanceof Error ? error.message : "Unknown error"
-        }`,
-      )
+        }`
+      );
     }
   }
 }

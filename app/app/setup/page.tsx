@@ -1,38 +1,65 @@
-"use client"
+"use client";
 
-import { useAccount } from "wagmi"
-import { useWalletStore } from "@/lib/store/slices/wallet"
-import { Button } from "@/components/ui/button"
-import { useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Deposit } from "@/components/app/setup/deposit"
+import { useAccount } from "wagmi";
+import { useWalletStore } from "@/lib/store/slices/wallet";
+import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Deposit } from "@/components/app/setup/deposit";
+import { Loader2 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function SetupPage() {
-  const { address, isConnected } = useAccount()
-  const router = useRouter()
+  const { address, isConnected } = useAccount();
+  const router = useRouter();
+  const { toast } = useToast();
 
-  const { brahmaAccount, deploymentStatus, deployBrahmaAccount } =
-    useWalletStore()
+  const { brahmaAccount, deploymentStatus, deployBrahmaAccount, error } =
+    useWalletStore();
 
   // Redirect if not connected
   useEffect(() => {
     if (!isConnected) {
-      router.push("/app")
+      router.push("/app");
     }
-  }, [isConnected, router])
+  }, [isConnected, router]);
+
+  // Handle deployment errors
+  useEffect(() => {
+    if (error && deploymentStatus === "error") {
+      toast({
+        title: "Deployment Failed",
+        description: error,
+        variant: "destructive",
+      });
+    }
+  }, [error, deploymentStatus, toast]);
 
   // Handle Brahma deployment
   const handleDeploy = async () => {
-    if (!address) return
-    await deployBrahmaAccount(address)
-  }
+    if (!address) return;
+    try {
+      await deployBrahmaAccount(address);
+    } catch (error) {
+      toast({
+        title: "Deployment Failed",
+        description:
+          error instanceof Error ? error.message : "Unknown error occurred",
+        variant: "destructive",
+      });
+    }
+  };
 
   // Handle successful deposit
   const handleDepositSuccess = () => {
-    router.push("/app/dashboard")
-  }
+    toast({
+      title: "Success",
+      description: "Your deposit was successful. Redirecting to dashboard...",
+    });
+    router.push("/app/dashboard");
+  };
 
-  if (!isConnected) return null
+  if (!isConnected) return null;
 
   return (
     <div className="container mx-auto max-w-2xl space-y-8 py-8">
@@ -44,18 +71,29 @@ export default function SetupPage() {
           <h2 className="mb-4 font-semibold text-xl">
             Step 1: Deploy Brahma Account
           </h2>
-          <Button
-            onClick={handleDeploy}
-            disabled={
-              deploymentStatus === "deploying" || brahmaAccount !== null
-            }
-          >
-            {deploymentStatus === "deploying"
-              ? "Deploying..."
-              : brahmaAccount
-                ? "Account Deployed"
-                : "Deploy Account"}
-          </Button>
+          <div className="space-y-4">
+            <Button
+              onClick={handleDeploy}
+              disabled={
+                deploymentStatus === "deploying" || brahmaAccount !== null
+              }
+              className="w-full"
+            >
+              {deploymentStatus === "deploying" ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Deploying...
+                </>
+              ) : brahmaAccount ? (
+                "Account Deployed"
+              ) : (
+                "Deploy Account"
+              )}
+            </Button>
+            {deploymentStatus === "error" && (
+              <p className="text-sm text-red-500">{error}</p>
+            )}
+          </div>
         </div>
 
         {/* Step 2: Initial Deposit */}
@@ -72,5 +110,5 @@ export default function SetupPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

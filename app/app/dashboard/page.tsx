@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import { useStore } from "@/lib/store"
-import { Card } from "@/components/ui/card"
-import { AgentStatusCard } from "@/components/dashboard/agent-status-card"
-import { Button } from "@/components/ui/button"
-import { WithdrawModal } from "@/components/dashboard/withdraw-modal"
-import { DeactivateModal } from "@/components/dashboard/deactivate-modal"
-import { useRouter } from "next/navigation"
+import { useEffect } from "react";
+import { useStore } from "@/lib/store";
+import { Card } from "@/components/ui/card";
+import { AgentStatusCard } from "@/components/dashboard/agent-status-card";
+import { Button } from "@/components/ui/button";
+import { WithdrawModal } from "@/components/dashboard/withdraw-modal";
+import { DeactivateModal } from "@/components/dashboard/deactivate-modal";
+import { useRouter } from "next/navigation";
 import {
   Shield,
   Copy,
@@ -15,10 +15,10 @@ import {
   Plus,
   ArrowUpRight,
   Power,
-} from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import Image from "next/image"
-import type { AgentStatus, Thought } from "@/lib/types"
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import type { AgentStatus, Thought } from "@/lib/types";
 
 export default function DashboardPage() {
   const {
@@ -30,43 +30,46 @@ export default function DashboardPage() {
     fetchAgentStatus,
     fetchThoughts,
     fetchWalletData,
-  } = useStore()
-  const router = useRouter()
+    brahmaAccount,
+  } = useStore();
+  const router = useRouter();
 
   useEffect(() => {
     // Initial fetch
-    fetchAgentStatus()
-    fetchThoughts()
-    fetchWalletData()
+    if (brahmaAccount) {
+      fetchAgentStatus(brahmaAccount);
+      fetchThoughts();
+      fetchWalletData();
+    }
 
     // Set up polling intervals
-    const statusInterval = setInterval(fetchAgentStatus, 10000) // Every 10s
-    const thoughtsInterval = setInterval(fetchThoughts, 5000) // Every 5s
-    const walletInterval = setInterval(fetchWalletData, 30000) // Every 30s
+    const interval = setInterval(() => {
+      if (brahmaAccount) {
+        fetchAgentStatus(brahmaAccount);
+        fetchThoughts();
+        fetchWalletData();
+      }
+    }, 10000);
 
-    return () => {
-      clearInterval(statusInterval)
-      clearInterval(thoughtsInterval)
-      clearInterval(walletInterval)
-    }
-  }, [fetchAgentStatus, fetchThoughts, fetchWalletData])
+    return () => clearInterval(interval);
+  }, [brahmaAccount, fetchAgentStatus, fetchThoughts, fetchWalletData]);
 
   const handleWithdraw = async (amount: string) => {
     // TODO: Implement withdraw functionality
-    console.log("Withdrawing amount:", amount)
-  }
+    console.log("Withdrawing amount:", amount);
+  };
 
   const handleDeactivate = async () => {
     // TODO: Implement deactivate functionality
-    console.log("Deactivating agents")
-  }
+    console.log("Deactivating agents");
+  };
 
   if (error) {
     return (
       <div className="container mx-auto flex min-h-[calc(100vh-72px)] items-center justify-center px-4 pt-24">
         <p className="text-red-500">{error}</p>
       </div>
-    )
+    );
   }
 
   if (isLoading && !agents.length && !thoughts.length && !walletData) {
@@ -74,11 +77,11 @@ export default function DashboardPage() {
       <div className="container mx-auto flex min-h-[calc(100vh-72px)] items-center justify-center px-4 pt-24">
         <p className="text-white/60">Loading dashboard data...</p>
       </div>
-    )
+    );
   }
 
   // Get the first position for the main display
-  const mainPosition = walletData?.positions[0]
+  const mainPosition = walletData?.positions[0];
 
   return (
     <div className="container mx-auto h-[calc(100vh-72px)] overflow-y-auto px-4 py-12">
@@ -160,7 +163,7 @@ export default function DashboardPage() {
                     {walletData?.address
                       ? `${walletData.address.slice(
                           0,
-                          6,
+                          6
                         )}...${walletData.address.slice(-4)}`
                       : "Not deployed"}
                   </p>
@@ -172,8 +175,8 @@ export default function DashboardPage() {
                         className="h-6 w-6 text-white/40 hover:text-white"
                         onClick={() => {
                           navigator.clipboard.writeText(
-                            walletData.address || "",
-                          )
+                            walletData.address || ""
+                          );
                         }}
                       >
                         <Copy className="h-3 w-3" />
@@ -185,8 +188,8 @@ export default function DashboardPage() {
                         onClick={() => {
                           window.open(
                             `https://basescan.org/address/${walletData.address}`,
-                            "_blank",
-                          )
+                            "_blank"
+                          );
                         }}
                       >
                         <ExternalLink className="h-3 w-3" />
@@ -299,5 +302,5 @@ export default function DashboardPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }
