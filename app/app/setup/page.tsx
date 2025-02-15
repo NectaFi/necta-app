@@ -1,7 +1,7 @@
 "use client"
 
 import { useAccount } from "wagmi"
-import { useWalletStore } from "@/lib/store/slices/wallet"
+import { useWalletStore } from "@/lib/store"
 import { Button } from "@/components/ui/button"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
